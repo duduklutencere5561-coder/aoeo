@@ -3,104 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IE 371 - Tesis Tasarımı Projesi</title>
+    <title>IE 371 - Düdüklü Tencere Tesis Tasarımı</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; }
-        .sidebar { height: 100vh; position: fixed; top: 0; left: 0; padding-top: 40px; background-color: #2c3e50; color: white; }
-        .sidebar a { color: #ecf0f1; text-decoration: none; padding: 10px 20px; display: block; font-weight: 500; }
-        .sidebar a:hover { background-color: #34495e; border-left: 4px solid #3498db; }
-        .content { margin-left: 250px; padding: 40px; }
-        .card-custom { border: none; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .hero-bg { background: linear-gradient(135deg, #2980b9, #2c3e50); color: white; padding: 40px; border-radius: 10px; }
-        .stat-box { background-color: #e8f4f8; padding: 20px; border-radius: 8px; text-align: center; border-left: 5px solid #3498db; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f9; position: relative; }
+        .sidebar { height: 100vh; position: fixed; top: 0; left: 0; width: 260px; background-color: #1a252f; color: #ecf0f1; padding-top: 20px; overflow-y: auto; }
+        .sidebar h5 { padding: 0 20px; color: #3498db; font-weight: bold; margin-bottom: 20px;}
+        .sidebar a { color: #bdc3c7; text-decoration: none; padding: 10px 20px; display: block; font-size: 14px; border-left: 3px solid transparent; }
+        .sidebar a:hover, .sidebar a.active { background-color: #2c3e50; color: #fff; border-left-color: #3498db; }
+        .content { margin-left: 260px; padding: 40px; }
+        .section-title { border-bottom: 2px solid #3498db; padding-bottom: 10px; margin-bottom: 30px; color: #2c3e50; }
+        .card-custom { border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        .hero-bg { background: linear-gradient(135deg, #2980b9, #2c3e50); color: white; padding: 40px; border-radius: 8px; margin-bottom: 40px;}
+        .stat-box { background-color: #fff; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-top: 4px solid #3498db; height: 100%;}
+        .table-custom th { background-color: #34495e; color: white; }
+        .badge-make { background-color: #27ae60; }
+        .badge-buy { background-color: #e74c3c; }
     </style>
 </head>
-<body>
+<body data-bs-spy="scroll" data-bs-target="#navbar-example" tabindex="0">
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2 sidebar">
-            <h4 class="text-center mb-4">IE 371 Proje</h4>
-            <a href="#ozet">1. Yönetici Özeti</a>
-            <a href="#urun">2. Ürün ve BOM</a>
-            <a href="#makine">3. Makine & Hat Dengeleme</a>
-            <a href="#hucre">4. Hücresel Üretim (ROC)</a>
-            <a href="#yerlesim">5. Tesis Yerleşimi (CRAFT)</a>
-            <a href="#simulasyon">6. Simülasyon (M/M/c)</a>
-        </div>
-
-        <div class="col-md-10 content">
-            
-            <section id="ozet" class="mb-5">
-                <div class="hero-bg mb-4">
-                    <h1>Düdüklü Tencere Üretim Tesisi Tasarımı</h1>
-                    <p class="lead">Yıllık 100.000 adet kapasiteli (Model A 22cm ve Model B 24cm) optimize edilmiş fabrika yerleşimi.</p>
-                </div>
-                <div class="row">
-                    <div class="col-md-3"><div class="stat-box"><h4>$4.94M</h4><p>Sabit Yatırım</p></div></div>
-                    <div class="col-md-3"><div class="stat-box"><h4>96</h4><p>Makine İhtiyacı</p></div></div>
-                    <div class="col-md-3"><div class="stat-box"><h4>63 sn</h4><p>Takt Süresi</p></div></div>
-                    <div class="col-md-3"><div class="stat-box"><h4>%43.4</h4><p>CRAFT İyileştirmesi</p></div></div>
-                </div>
-            </section>
-
-            <section id="urun" class="mb-5">
-                <div class="card card-custom p-4">
-                    <h2>Ürün Analizi ve BOM</h2>
-                    <p>Toplam 21 ana bileşen analiz edilmiş olup, stratejik başabaş (break-even) analizleri sonucunda 13 parça MAKE (üret), 8 parça BUY (satın al) olarak belirlenmiştir.</p>
-                    <ul>
-                        <li><strong>Darboğaz:</strong> Bakalit kulplar 60 saniyelik kürlenme süresiyle üretimdeki ana darboğazdır.</li>
-                        <li><strong>Ürün Ağacı:</strong> Gövde, Kapak, Sap/Kulp ve Ambalaj alt montajları olarak 4 ana gruba ayrılmıştır.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section id="makine" class="mb-5">
-                <div class="card card-custom p-4">
-                    <h2>Makine İhtiyacı ve Hat Dengeleme</h2>
-                    <p>Gerekli makine sayısı formülü kullanılarak hesaplanmıştır:</p>
-                    <p class="text-center"><strong>N = (T × Q) / (E × H × (1-f))</strong></p>
-                    <p>Son montaj hattı için RPW heuristiği kullanılarak dengeleme yapılmıştır. Klasik düz hat yerine ergonomik ve esnek olan <strong>U-Tipi Hat</strong> (3 istasyon, 2 operatör, %73.0 verim) seçilmiştir.</p>
-                </div>
-            </section>
-
-            <section id="hucre" class="mb-5">
-                <div class="card card-custom p-4">
-                    <h2>Hücresel Üretim (ROC Algoritması)</h2>
-                    <p>Python'da yazılan King'in (1980) Rank Order Clustering algoritması 3 iterasyonda yakınsamış ve <strong>%93.1 Grouping Efficacy</strong> (mükemmel) seviyesine ulaşmıştır. 4 üretim hücresi tespit edilmiştir:</p>
-                    <ol>
-                        <li>Metal Şekillendirme</li>
-                        <li>Sandviç Taban (Impact Bonding)</li>
-                        <li>CNC + Test + Son Montaj</li>
-                        <li>Küçük Pres + Plastik</li>
-                    </ol>
-                </div>
-            </section>
-
-            <section id="yerlesim" class="mb-5">
-                <div class="card card-custom p-4">
-                    <h2>Tesis Yerleşimi ve CRAFT Optimizasyonu</h2>
-                    <p>Guerchet yöntemiyle brüt alan 2.330 m² olarak belirlenmiştir. Başlangıçta U-tipi yerleşim seçilmiş (23.931 ton-m/yıl) ve Python tabanlı CRAFT iterasyonlarıyla bu maliyet optimize edilmiştir.</p>
-                    <p>CRAFT algoritması 6 iterasyon sonucunda toplam akış maliyetini <strong>18.205 ton-m/yıl</strong> seviyesine çekerek %43.4 oranında devasa bir tasarruf sağlamıştır.</p>
-                </div>
-            </section>
-
-            <section id="simulasyon" class="mb-5">
-                <div class="card card-custom p-4">
-                    <h2>Performans Doğrulama (M/M/c & Monte Carlo)</h2>
-                    <p>Erlang C formülü ile analitik kuyruk analizi ve Python üzerinden 100 replikasyonlu Monte Carlo ayrık olay simülasyonu yapılmıştır.</p>
-                    <ul>
-                        <li><strong>Hat Çıkış Oranı:</strong> %99.3</li>
-                        <li><strong>Kurşun Süresi (Lead Time):</strong> Sadece 116 saniye (yaklaşık 1.9 dakika)</li>
-                        <li><strong>Kapasite:</strong> Sistemin yıllık 99.422 adet üretebileceği simüle edilmiştir.</li>
-                    </ul>
-                </div>
-            </section>
-        </div>
+    <div class="sidebar" id="navbar-example">
+        <h5>IE 371 PROJE</h5>
+        <a href="#ozet">Yönetici Özeti</a>
+        <a href="#adim23">Adım 2-3: Make/Buy & BOM</a>
+        <a href="#adim45">Adım 4-5: OPC & Öncelik</a>
+        <a href="#adim67">Adım 6-7: Makine & Operatör</a>
+        <a href="#adim8">Adım 8: Hat Dengeleme</a>
+        <a href="#adim9">Adım 9: Hücresel Üretim (ROC)</a>
+        <a href="#adim1011">Adım 10-11: Akış & Alan Hesabı</a>
+        <a href="#adim1214">Adım 12-14: CRAFT Yerleşimi</a>
+        <a href="#adim1516">Adım 15-16: Taşıma & Simülasyon</a>
+        <a href="#adim18">Adım 18: Bonus (Python & Excel)</a>
     </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="content">
+
+        <section id="ozet">
+            <div class="hero-bg">
+                <h1 class="fw-bold">Düdüklü Tencere Üretim Tesisi Tasarımı</h1>
+                <p class="lead">Yıllık 100.000 adet (Model A 22cm/5L ve Model B 24cm/7L) kapasiteli tesisin veri odaklı optimizasyonu.</p>
+            </div>
+            <div class="row mb-5">
+                <div class="col-md-3"><div class="stat-box"><h3 class="fw-bold text-primary">$4.94M</h3><p class="text-muted mb-0">Toplam Sabit Yatırım</p></div></div>
+                <div class="col-md-3"><div class="stat-box"><h3 class="fw-bold text-primary">%43.4</h3><p class="text-muted mb-0">CRAFT Akış İyileştirmesi</p></div></div>
+                <div class="col-md-3"><div class="stat-box"><h3 class="fw-bold text-primary">63 sn</h3><p class="text-muted mb-0">Takt Süresi</p></div></div>
+                <div class="col-md-3"><div class="stat-box"><h3 class="fw-bold text-primary">116 sn</h3><p class="text-muted mb-0">Kurşun Süresi (Lead Time)</p></div></div>
+            </div>
+        </section>
+
+        <section id="adim23">
+            <h2 class="section-title">Adım 2 & 3: Make-or-Buy Analizi ve Ürün Ağacı</h2>
+            <div class="card card-custom p-4">
+                <p>21 ana bileşen analiz edilmiş, başabaş (break-even) analizleri sonucunda yatırımların 6 aydan kısa sürede döndüğü görülmüştür[cite: 1591, 1611].</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Karar Özeti</h4>
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                İçeride Üretilen (MAKE) Parçalar
+                                <span class="badge badge-make rounded-pill">13 Kalem</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Dışarıdan Alınan (BUY) Parçalar
+                                <span class="badge badge-buy rounded-pill">8 Kalem</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Kritik Başabaş Noktaları (BEP)</h4>
+                        <ul>
+                            <li><strong>Bakalit Kulplar:</strong> $85.000 yatırım, ~3.6 ay amorti.</li>
+                            <li><strong>Basınç Regülatörü:</strong> $55.000 yatırım, ~3.5 ay amorti.</li>
+                            <li><strong>Otomatik Polisaj Hattı:</strong> $150.000 yatırım, ~6.3 ay amorti.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="adim45">
+            <h2 class="section-title">Adım 4 & 5: Süreç Şemaları ve Öncelik Diyagramı</h2>
+            <div class="card card-custom p-4">
+                <p>Toplamda 85 operasyon ve 29 kontrol noktası planlanmıştır[cite: 1864, 1865]. Son montaj hattı için CPM (Kritik Yol Yöntemi) analizinde toplam görev süresi 92 saniye, kritik yol ise 73 saniye bulunmuştur[cite: 1909, 1916].</p>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-custom">
+                        <thead>
+                            <tr><th>Operasyon Sınıfı</th><th>Örnek Parça</th><th>Toplam Süre</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Metal Şekillendirme</td><td>Ana Gövde (15 dk tavlama dahil)</td><td>980 sn [cite: 1777]</td></tr>
+                            <tr><td>Talaşlı İmalat</td><td>Buhar Tahliye Borusu (Tsugami CNC)</td><td>58 sn [cite: 1807]</td></tr>
+                            <tr><td>Plastik Enjeksiyon</td><td>Bakalit Kulplar (Darboğaz)</td><td>104 sn [cite: 1836]</td></tr>
+                            <tr><td>Son Montaj (M1-M9)</td><td>Mamul Ürün</td><td>92 sn [cite: 1860]</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="adim67">
+            <h2 class="section-title">Adım 6 & 7: Makine ve Operatör İhtiyacı</h2>
+            <div class="card card-custom p-4">
+                <p>İhtiyaçlar aşağıdaki denklemle hesaplanmıştır:</p>
+                <div class="p-3 bg-light text-center border rounded mb-3">
+                    <strong>Makine Sayısı Formülü:</strong> $$N = \frac{T \times Q_{etkin}}{E \times H \times (1-f)}$$ [cite: 1956]
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <h4 class="text-primary">96</h4><p>Toplam Makine İhtiyacı [cite: 1978]</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="text-primary">25</h4><p>Vardiya Başı Operatör [cite: 1997]</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="text-primary">$2.90M</h4><p>Makine Yatırımı [cite: 1978]</p>
+                    </div>
+                </div>
+                <p class="mt-3"><strong>Kritik Darboğaz:</strong> 60 saniyelik kürlenme süresiyle Bakalit Kulplardır. Toplam 4 adet Haitian enjeksiyon makinesi ile çözülmüştür[cite: 1982, 1984, 1985].</p>
+            </div>
+        </section>
+
+        <section id="adim8">
+            <h2 class="section-title">Adım 8: Hat Dengeleme</h2>
+            <div class="card card-custom p-4">
+                <p>RPW, LOT ve MFT algoritmaları %73.0 teorik verim ile 2 istasyonu işaret etse de, ergonomi ve kalite süreçleri için esnek <strong>U-Tipi Hat</strong> seçilmiştir[cite: 2037, 2109].</p>
+                <table class="table table-bordered">
+                    <thead class="table-light">
+                        <tr><th>Parametre</th><th>Düz Hat (2 İst)</th><th>Düz Hat (3 İst)</th><th class="table-success">U-Tipi (3 İst) - SEÇİLEN</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Verim (η)</td><td>%73.0</td><td>%48.7</td><td class="table-success">%73.0 [cite: 2107]</td></tr>
+                        <tr><td>Operatör</td><td>2 (Aşırı Yüklü)</td><td>3</td><td class="table-success">2 [cite: 2107]</td></tr>
+                        <tr><td>Alan İhtiyacı</td><td>~32 m²</td><td>~40 m²</td><td class="table-success">~28 m² [cite: 2107]</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="adim9">
+            <h2 class="section-title">Adım 9: Hücresel Üretim (ROC)</h2>
+            <div class="card card-custom p-4">
+                <p>Python ile King (1980) Rank Order Clustering algoritması çalıştırılmış, 3 iterasyonda mükemmel bir <strong>%93.1 Grouping Efficacy</strong> seviyesine ulaşılmıştır[cite: 2129, 2131].</p>
+                <ul>
+                    <li><strong>Hücre 1:</strong> Metal Şekillendirme (Gövde + Kapak) [cite: 2217]</li>
+                    <li><strong>Hücre 2:</strong> Sandviç Taban (Impact Bonding) [cite: 2217]</li>
+                    <li><strong>Hücre 3:</strong> CNC, Test ve Son Montaj [cite: 2217]</li>
+                    <li><strong>Hücre 4:</strong> Küçük Pres ve Plastik Enjeksiyon [cite: 2217]</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="adim1011">
+            <h2 class="section-title">Adım 10 & 11: Akış Analizi ve Alan İhtiyacı</h2>
+            <div class="card card-custom p-4">
+                <p>Toplam yıllık malzeme akışı <strong>1006 ton/yıl</strong> olarak tespit edilmiştir[cite: 2439]. F. Guerchet formülüyle brüt fabrika alanı <strong>2.330 m²</strong> (55x45 m) olarak hesaplanmıştır[cite: 2458, 2542, 2553].</p>
+                <ul>
+                    <li>Üretim Hücreleri: 1.109 m² (%47.6) [cite: 2545]</li>
+                    <li>Depolama: 410 m² (%17.6) [cite: 2546]</li>
+                    <li>Koridorlar ve Sosyal/Ofis alanları: Kalan hacim.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="adim1214">
+            <h2 class="section-title">Adım 12-14: Alternatifler ve CRAFT İyileştirmesi</h2>
+            <div class="card card-custom p-4">
+                <p>L-Tipi ve U-Tipi yerleşimler karşılaştırılmış; ortak rampa avantajıyla U-Tipi yerleşim akış maliyetini 32.128'den 23.931 ton-m/yıl'a çekmiştir (12.341 $ yıllık tasarruf)[cite: 2680, 2690].</p>
+                <div class="alert alert-success">
+                    <strong>CRAFT Optimizasyonu:</strong> Python üzerinde kodlanan algoritma 6 iterasyonla maliyeti <strong>18.205 ton-m/yıl</strong> seviyesine indirmiş, başlangıç durumuna göre toplamda <strong>%43.4 taşıma optimizasyonu</strong> sağlamıştır[cite: 2762, 2827].
+                </div>
+            </div>
+        </section>
+
+        <section id="adim1516">
+            <h2 class="section-title">Adım 15 & 16: Malzeme Taşıma ve Simülasyon</h2>
+            <div class="card card-custom p-4">
+                <p>Yüksek akışlı (320 ton/yıl) hatlar için Konveyör, palet hareketleri için Forklift ve hücreler arası esnek transferler için AGV seçilmiştir. Toplam taşıma yatırımı: $406.000[cite: 2866, 2870].</p>
+                <hr>
+                <h4>Performans Doğrulama (M/M/c & Monte Carlo)</h4>
+                <ul>
+                    <li><strong>Monte Carlo (100 Replikasyon):</strong> Lead Time 116 sn, Hat Çıkış Oranı %99.3[cite: 2928, 2931].</li>
+                    <li><strong>Kapasite:</strong> Sistemin yıllık 99.422 adet (Hedefin %99.4'ü) kapasiteye sahip olduğu stokastik olarak doğrulanmıştır[cite: 2940]. En yüksek kuyruk doluluğu %54 ile son montaj hattındadır[cite: 2958].</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="adim18" class="mb-5">
+            <h2 class="section-title">Adım 18: Bonus (Sayısal Algoritmalar)</h2>
+            <div class="card card-custom p-4">
+                <p>Bu proje ticari yazılımlar (Arena, Lingo) kullanmak yerine %100 açık kaynak kod ve dinamik hesap tabloları ile geliştirilmiştir[cite: 2977, 2980].</p>
+                <ul>
+                    <li><strong>Python Modülleri:</strong> ROC kümeleme [cite: 2995], CRAFT yerleşim iterasyonları [cite: 3009], Monte Carlo Simülasyonu[cite: 3035].</li>
+                    <li><strong>Excel:</strong> Makine hesabı, Guerchet, ve Akış maliyeti için 0 hatalı toplam 860 canlı formül.</li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Yumuşak kaydırma ve menü vurgusu için basit script
+        document.querySelectorAll('.sidebar a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
