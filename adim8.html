@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adım 8 — Hat Dengeleme — IE 371 Projesi</title>
+<meta name="description" content="IE 371 — Helgeson & Birnie (RPW) yöntemiyle son montaj hattı dengeleme.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="main-nav">
+  <a href="index.html" class="nav-logo">IE 371 · DÜDÜKLÜ TENCERE</a>
+  <div class="nav-links">
+    <a href="index.html">Ana</a>
+    <a href="urun.html">Ürün</a>
+    <a href="adimlar.html" class="active">18 Adım</a>
+    <a href="algoritma.html">Algoritma</a>
+    <a href="karsilastirma.html">Karşılaştırma</a>
+    <a href="sonuclar.html">Sonuçlar</a>
+    <a href="sss.html">SSS</a>
+    <a href="dosyalar.html">Dosyalar</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Ana</a><span>/</span><a href="adimlar.html">18 Adım</a><span>/</span>Adım 8</div>
+    <div class="page-step-tag">ADIM 08</div>
+    <h1 class="page-title">Montaj Hattı <em>Dengeleme.</em></h1>
+    <p class="page-subtitle">Toplam 92 saniyelik son montaj iş yükünün, 63 saniyelik takt süresi kısıtı altında Helgeson & Birnie (RPW) algoritması ile istasyonlara atanması.</p>
+  </div>
+</header>
+
+<main>
+  <div class="content-grid">
+    <aside class="sidebar">
+      <div class="sidebar-title">Sayfada</div>
+      <nav>
+        <a href="#algoritma">RPW Algoritması</a>
+        <a href="#gorevler">Görevler & Ağırlıklar</a>
+        <a href="#istasyonlar">İstasyon Atamaları</a>
+        <a href="#verimlilik">Hat Verimliliği</a>
+      </nav>
+    </aside>
+
+    <div class="prose">
+      <h2 id="algoritma">1. RPW (Ranked Positional Weight) Yöntemi</h2>
+      <p class="lead">Montaj hattındaki görevleri birbirlerine olan bağımlılıklarına ve toplam işlem sürelerine göre sıralayarak istasyon ataması yapan sezgisel bir yaklaşımdır.</p>
+      
+      <p>Önceki adımlardan elde ettiğimiz temel parametreler:</p>
+      <ul>
+        <li><strong>Toplam İş İçeriği ($\sum t_i$):</strong> 92 saniye</li>
+        <li><strong>Takt Süresi (C):</strong> 63 saniye (Adım 1 ve 6'dan)</li>
+        <li><strong>Teorik Minimum İstasyon (N_min):</strong> $92 / 63 = 1.46 \rightarrow 2 \text{ istasyon}$</li>
+      </ul>
+
+      <h2 id="gorevler">2. Görevler ve Pozisyonel Ağırlıklar</h2>
+      <p>Son montaj hattı 6 temel alt görevden oluşmaktadır. Her görevin ağırlığı, kendisi ve kendisinden sonra gelen tüm görevlerin sürelerinin toplamıdır.</p>
+
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Görev Kodu</th><th>Tanım</th><th>Süre ($t_i$)</th><th>Öncülü</th><th>Pozisyonel Ağırlık</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">M1</td><td>Gövde ve yan kulpların montajı</td><td class="num">15 sn</td><td>-</td><td class="num">92</td></tr>
+            <tr><td class="mono">M2</td><td>Basınç valfi ve regülatör montajı</td><td class="num">20 sn</td><td>-</td><td class="num">77</td></tr>
+            <tr><td class="mono">M3</td><td>Kapak silikon conta yerleşimi</td><td class="num">18 sn</td><td>M2</td><td class="num">57</td></tr>
+            <tr><td class="mono">M4</td><td>Kapak ana kulp montajı</td><td class="num">12 sn</td><td>M3</td><td class="num">39</td></tr>
+            <tr><td class="mono">M5</td><td>Basınç/Sızdırmazlık Testi (Kalite)</td><td class="num">17 sn</td><td>M1, M4</td><td class="num">27</td></tr>
+            <tr><td class="mono">M6</td><td>Nihai temizlik ve kutulama</td><td class="num">10 sn</td><td>M5</td><td class="num">10</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="istasyonlar">3. İstasyon Atamaları</h2>
+      <p>Ağırlığı en yüksek olan görevden başlanarak, istasyonun kalan boş zamanı (idle time) sıfırın altına düşmeyene kadar (Takt süresi $\le$ 63 sn) atama yapılır.</p>
+      
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="label">İstasyon 1 (Gövde & Valf)</div>
+          <div class="value">53<span class="unit">sn</span></div>
+          <div class="desc"><strong>Görevler:</strong> M1, M2, M3<br><strong>Boş Zaman:</strong> 10 sn</div>
+        </div>
+        <div class="metric-card">
+          <div class="label">İstasyon 2 (Kapak & Test)</div>
+          <div class="value">39<span class="unit">sn</span></div>
+          <div class="desc"><strong>Görevler:</strong> M4, M5, M6<br><strong>Boş Zaman:</strong> 24 sn</div>
+        </div>
+      </div>
+
+      <div class="callout cool" data-label="ÜRETİM NOTU">
+        <p>İstasyon 2'deki operatörün 24 saniyelik yüksek boş zamanı, kalite testlerinde (M5) yaşanabilecek olası gecikmeleri veya yeniden işlemeleri tolere etmek için <strong>tampon (buffer)</strong> olarak bırakılmıştır.</p>
+      </div>
+
+      <h2 id="verimlilik">4. Hat Verimliliği ve Gecikme Kaybı</h2>
+      
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Metrik</th><th>Formül</th><th>Sonuç</th><th>Değerlendirme</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Hat Verimliliği (E)</strong></td><td class="mono">$\sum t_i / (N \times C)$</td><td class="num good">%73.01</td><td>2 istasyonlu hat için tatmin edici.</td></tr>
+            <tr><td><strong>Dengeleme Kaybı (d)</strong></td><td class="mono">$100 - E$</td><td class="num warn">%26.99</td><td>Test tamponu sebebiyle kabul edilebilir düzeyde.</td></tr>
+            <tr><td><strong>Düzgünlük İndeksi (SI)</strong></td><td class="mono">$\sqrt{\sum (t_{max} - t_s)^2}$</td><td class="num">14.0</td><td>İstasyonlar arası süre farkının (53 ve 39) karekökü.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="step-pagination">
+        <a href="adim6.html"><span class="dir">← ÖNCEKİ ADIM 6&7</span><span class="title">Makine & Operatör</span></a>
+        <a href="adim9.html" class="next"><span class="dir">SONRAKİ ADIM 9 →</span><span class="title">Makine Gruplama</span></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="main-footer">
+  <div class="brand">IE 371 · Düdüklü Tencere Üretim Tesisi Projesi</div>
+  <div class="meta">ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ · ENDÜSTRİ MÜHENDİSLİĞİ · 2026</div>
+  <div class="links">
+    <a href="index.html">Ana</a><a href="adimlar.html">18 Adım</a><a href="algoritma.html">Algoritma</a><a href="dosyalar.html">Dosyalar</a>
+  </div>
+</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adım 10 — Alan İhtiyaçları — IE 371 Projesi</title>
+<meta name="description" content="IE 371 — Guerchet Metodu ile üretim, depolama ve idari alan ihtiyaçlarının (m²) hesaplanması.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="main-nav">
+  <a href="index.html" class="nav-logo">IE 371 · DÜDÜKLÜ TENCERE</a>
+  <div class="nav-links">
+    <a href="index.html">Ana</a>
+    <a href="urun.html">Ürün</a>
+    <a href="adimlar.html" class="active">18 Adım</a>
+    <a href="algoritma.html">Algoritma</a>
+    <a href="karsilastirma.html">Karşılaştırma</a>
+    <a href="sonuclar.html">Sonuçlar</a>
+    <a href="sss.html">SSS</a>
+    <a href="dosyalar.html">Dosyalar</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Ana</a><span>/</span><a href="adimlar.html">18 Adım</a><span>/</span>Adım 10</div>
+    <div class="page-step-tag">ADIM 10</div>
+    <h1 class="page-title">Tesis Alan İhtiyaçlarının <em>Hesaplanması.</em></h1>
+    <p class="page-subtitle">Üretim hücreleri, depolama, kalite laboratuvarı ve idari alanların toplam metrekare (m²) cinsinden boyutlandırılması ve 2.500 m² hedefinin kontrolü.</p>
+  </div>
+</header>
+
+<main>
+  <div class="content-grid">
+    <aside class="sidebar">
+      <div class="sidebar-title">Sayfada</div>
+      <nav>
+        <a href="#metodoloji">Guerchet Metodu</a>
+        <a href="#uretim">Üretim Alanları</a>
+        <a href="#depolama">Depolama (Ambar)</a>
+        <a href="#idari">İdari & Sosyal</a>
+        <a href="#toplam">Toplam Tesis Alanı</a>
+      </nav>
+    </aside>
+
+    <div class="prose">
+      <h2 id="metodoloji">1. Hesaplama Metodolojisi (Guerchet Metodu)</h2>
+      <p class="lead">Tesis alanları hesaplanırken sadece makinenin kapladığı fiziksel alan (izdüşüm) değil; operatörün çalışma alanı, makine bakımı ve parça bekleme (WIP) payları da hesaba katılmalıdır.</p>
+      
+      <div class="formula">
+        $S_T = n \times (S_s + S_e + S_g)$
+      </div>
+      
+      <ul>
+        <li><strong>$S_s$ (Statik Alan):</strong> Makinenin veya çalışma tezgahının taban alanı ($Eny \times Boy$).</li>
+        <li><strong>$S_e$ (Gravitasyonel Alan):</strong> Operatörün çalışma ve malzeme yükleme alanı. (Genellikle $S_s \times 1.0$ ile $1.5$ arası).</li>
+        <li><strong>$S_g$ (Evrimsel Alan):</strong> Geçiş yolları, bakım ve süreç içi stok (WIP) için eklenen pay. (Genellikle $(S_s + S_e) \times K$ formülüyle bulunur. K katsayısı sanayi için ~1.5 alınır).</li>
+      </ul>
+
+      <h2 id="uretim">2. Üretim Hücreleri Alan İhtiyacı</h2>
+      <p>Adım 9'da belirlediğimiz hücre yapısına göre 96 makinenin toplam alan ihtiyacı hesaplanmıştır (Koridor ve taşıma yolları %30 emniyet payı içermektedir).</p>
+
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Üretim Bölgesi</th><th>Makine Sayısı</th><th>Statik Alan ($S_s$)</th><th>Toplam Gerekli Alan</th></tr></thead>
+          <tbody>
+            <tr><td>Hücre 1: Ağır Pres Hattı</td><td class="num">14</td><td class="num">180 m²</td><td class="num">540 m²</td></tr>
+            <tr><td>Hücre 2: Talaşlı İmalat</td><td class="num">12</td><td class="num">85 m²</td><td class="num">255 m²</td></tr>
+            <tr><td>Hücre 3: Bakalit & Polisaj</td><td class="num">26</td><td class="num">110 m²</td><td class="num">330 m²</td></tr>
+            <tr><td>Son Montaj & Kalite Testi</td><td class="num">12 (İstasyon)</td><td class="num">40 m²</td><td class="num">120 m²</td></tr>
+            <tr><td>Takımhane & Bakım Atölyesi</td><td class="num">-</td><td class="num">30 m²</td><td class="num">75 m²</td></tr>
+            <tr class="total"><td><strong>TOPLAM ÜRETİM ALANI</strong></td><td class="num"><strong>96</strong></td><td class="num"><strong>445 m²</strong></td><td class="num"><strong>1.320 m²</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="depolama">3. Depolama ve Ambar Alanları</h2>
+      <p>Adım 3 (BOM) verilerine göre yıllık 141 ton metal kullanılacaktır. Güvenlik stoku 3 ay (35 ton) olarak hedeflenmiştir.</p>
+
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="label">Hammadde Deposu</div>
+          <div class="value">280<span class="unit">m²</span></div>
+          <div class="desc">Rulo saclar, alüminyum diskler ve 3 aylık stok. Ağır raf sistemi.</div>
+        </div>
+        <div class="metric-card">
+          <div class="label">Mamul Deposu (Sevkiyat)</div>
+          <div class="value">350<span class="unit">m²</span></div>
+          <div class="desc">Kutulanmış tencereler. Paletli stoklama (1 ay bekleme süresi).</div>
+        </div>
+        <div class="metric-card">
+          <div class="label">WIP & Ara Depolama</div>
+          <div class="value">120<span class="unit">m²</span></div>
+          <div class="desc">Hücreler arası parça aktarım tamponları.</div>
+        </div>
+      </div>
+
+      <h2 id="idari">4. İdari ve Sosyal Tesisler</h2>
+      <p>Toplam 25 mavi yaka ve 8 beyaz yaka (mühendis, yönetici, planlama) personel için gerekli yaşam ve yönetim alanları yönetmeliklere uygun hesaplanmıştır.</p>
+
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Alan Tipi</th><th>Kapasite</th><th>Norm (m²/kişi)</th><th>Toplam Alan</th></tr></thead>
+          <tbody>
+            <tr><td>Açık Ofis & Yönetim</td><td class="num">8 kişi</td><td class="num">12.0</td><td class="num">100 m²</td></tr>
+            <tr><td>Toplantı & Eğitim Odası</td><td class="num">15 kişi</td><td class="num">2.5</td><td class="num">40 m²</td></tr>
+            <tr><td>Yemekhane</td><td class="num">35 kişi</td><td class="num">2.0</td><td class="num">70 m²</td></tr>
+            <tr><td>Soyunma Odaları & Duşlar</td><td class="num">25 kişi</td><td class="num">3.0</td><td class="num">75 m²</td></tr>
+            <tr><td>Kalite Kontrol Laboratuvarı</td><td class="num">-</td><td class="num">-</td><td class="num">45 m²</td></tr>
+            <tr class="total"><td><strong>TOPLAM İDARİ ALAN</strong></td><td colspan="2"></td><td class="num"><strong>330 m²</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="toplam">5. Tesis Genel Alan Özeti</h2>
+      
+      <div class="callout good" data-label="HEDEF KONTROLÜ">
+        <p>Adım 1'de belirlenen <strong>"Bina taban alanı &lt; 2.500 m²"</strong> hedefi başarıyla sağlanmıştır. Tesis toplam <strong>2.400 m²</strong> kapalı alana yerleşecek şekilde tasarlanabilir.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Departman (Alan Kodu)</th><th>İhtiyaç (m²)</th><th>Oran (%)</th></tr></thead>
+          <tbody>
+            <tr><td>Üretim Bölgesi (Makine + Geçiş)</td><td class="num">1.320</td><td class="num">%55</td></tr>
+            <tr><td>Depolama (Hammadde + Mamul + WIP)</td><td class="num">750</td><td class="num">%31</td></tr>
+            <tr><td>İdari ve Sosyal Tesisler</td><td class="num">330</td><td class="num">%14</td></tr>
+            <tr class="total"><td><strong>NET TESİS ALANI</strong></td><td class="num"><strong>2.400 m²</strong></td><td class="num"><strong>%100</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="step-pagination">
+        <a href="adim9.html"><span class="dir">← ÖNCEKİ ADIM 9</span><span class="title">Makine Gruplama</span></a>
+        <a href="adim11.html" class="next"><span class="dir">SONRAKİ ADIM 11 →</span><span class="title">İlişki Diyagramı</span></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="main-footer">
+  <div class="brand">IE 371 · Düdüklü Tencere Üretim Tesisi Projesi</div>
+  <div class="meta">ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ · ENDÜSTRİ MÜHENDİSLİĞİ · 2026</div>
+  <div class="links">
+    <a href="index.html">Ana</a><a href="adimlar.html">18 Adım</a><a href="algoritma.html">Algoritma</a><a href="dosyalar.html">Dosyalar</a>
+  </div>
+</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>

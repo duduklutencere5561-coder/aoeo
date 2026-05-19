@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adım 1 — Ürün Tanımı — IE 371 Projesi</title>
+<meta name="description" content="IE 371 — Adım 1: Ürün tanımı, hedefler, takt süresi 63 sn">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="main-nav">
+  <a href="index.html" class="nav-logo">IE 371 · DÜDÜKLÜ TENCERE</a>
+  <div class="nav-links">
+    <a href="index.html">Ana</a>
+    <a href="urun.html">Ürün</a>
+    <a href="adimlar.html" class="active">18 Adım</a>
+    <a href="algoritma.html">Algoritma</a>
+    <a href="karsilastirma.html">Karşılaştırma</a>
+    <a href="sonuclar.html">Sonuçlar</a>
+    <a href="sss.html">SSS</a>
+    <a href="dosyalar.html">Dosyalar</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Ana</a><span>/</span><a href="adimlar.html">18 Adım</a><span>/</span>Adım 1</div>
+    <div class="page-step-tag">ADIM 01</div>
+    <h1 class="page-title">Ürün tanımı ve <em>üretim hedefleri.</em></h1>
+    <p class="page-subtitle">Tasarlanacak iki düdüklü tencere modelinin teknik özellikleri, yıllık talep dağılımı, takt süresi ve temel üretim parametrelerinin belirlenmesi.</p>
+  </div>
+</header><main><div class="content-grid"><aside class="sidebar"><div class="sidebar-title">Sayfada</div><nav><a href="#urun">Ürün Tanımı</a><a href="#talep">Talep Profili</a><a href="#takt">Takt Süresi</a><a href="#malzeme">Malzeme Seçimi</a><a href="#hedefler">Tasarım Hedefleri</a></nav></aside><div class="prose">
+
+<h2 id="urun">1. Ürün Tanımı</h2>
+<p class="lead">Düdüklü tencere, basınç altında yemek pişirme aletidir. Hermetik kapanan kapağı sayesinde içerideki buhar dışarı çıkamaz ve basınç yükselir, böylece suyun kaynama noktası 100°C'den 120°C'ye çıkar. Bu yüksek sıcaklık yemeği <strong>%30-70 daha hızlı</strong> pişirir, enerji tüketimini düşürür ve besin değerlerini korur.</p>
+
+<p>Bu projede iki farklı model üretilecektir. Modellerin <strong>%95 ortak süreç</strong> kullanması, hücresel üretim için ideal bir tasarım sağlar. Sadece kalıp ölçüleri ve kulp boyutları farklılaşır.</p>
+
+<div class="row cols-2">
+  <div class="metric-card">
+    <div class="label">Model A — Aile Boyu</div>
+    <div class="value">5<span class="unit">litre</span></div>
+    <div class="desc">22 cm çap, 4-5 kişilik kullanım. 2.093 g brüt ağırlık.</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Model B — Geniş Aile</div>
+    <div class="value">7<span class="unit">litre</span></div>
+    <div class="desc">24 cm çap, 6-8 kişilik kullanım. 2.585 g brüt ağırlık.</div>
+  </div>
+</div>
+
+<h2 id="talep">2. Yıllık Talep Profili</h2>
+<p>Pazar araştırması sonuçlarına göre talep dağılımı %60 Model A, %40 Model B şeklindedir. Toplam yıllık talep <strong>100.000 adet</strong> olarak kabul edilmiştir.</p>
+
+<div class="table-wrap">
+<table class="data">
+<thead><tr><th>Model</th><th>Hacim</th><th>Çap</th><th>Hedef Pazar</th><th>Yıllık Adet</th><th>Pay</th></tr></thead>
+<tbody>
+<tr><td><strong>Model A</strong> — Standart</td><td>5 L</td><td>22 cm</td><td>4-5 kişilik aile, ev kullanımı</td><td class="num">60.000</td><td class="num">%60</td></tr>
+<tr><td><strong>Model B</strong> — Geniş</td><td>7 L</td><td>24 cm</td><td>6-8 kişilik, restoran/otel</td><td class="num">40.000</td><td class="num">%40</td></tr>
+<tr class="total"><td colspan="4"><strong>TOPLAM YILLIK ÜRETİM</strong></td><td class="num">100.000</td><td class="num">%100</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="takt">3. Takt Süresi Hesabı</h2>
+<p>Takt süresi (Almanca <em>Taktzeit</em>), bir ürünün üretim hattından ne kadar sürede bir çıkması gerektiğini gösterir. Müşteri talebi ile üretim hızının dengelenmesini sağlar.</p>
+
+<div class="formula">
+Takt = Mevcut Üretim Süresi / Müşteri Talebi<br>
+<span class="desc">Saniye / Adet</span>
+</div>
+
+<h4>Hesap Adımları</h4>
+
+<div class="table-wrap">
+<table class="data">
+<thead><tr><th>Parametre</th><th>Değer</th><th>Açıklama</th></tr></thead>
+<tbody>
+<tr><td>Yıllık iş günü</td><td class="num">250 gün</td><td>365 - 104 (hafta sonu) - ~11 (resmi tatil)</td></tr>
+<tr><td>Günlük vardiya sayısı</td><td class="num">1 vardiya</td><td>Yeterli kapasite tek vardiyayla sağlanır</td></tr>
+<tr><td>Vardiya brüt süresi</td><td class="num">8 saat</td><td>480 dakika</td></tr>
+<tr><td>Dinlenme/ara süresi</td><td class="num">60 dk</td><td>2 × 15 dk çay + 30 dk yemek</td></tr>
+<tr><td>Etkin vardiya süresi</td><td class="num">420 dk</td><td>7 saat (= 25.200 sn)</td></tr>
+<tr class="total"><td><strong>Yıllık etkin üretim süresi</strong></td><td class="num"><strong>6.300.000 sn</strong></td><td><strong>250 × 25.200</strong></td></tr>
+<tr><td>Yıllık talep</td><td class="num">100.000 adet</td><td></td></tr>
+<tr class="total"><td><strong>TAKT SÜRESİ</strong></td><td class="num"><strong>63 sn / adet</strong></td><td><strong>6.300.000 ÷ 100.000</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout cool" data-label="ÖZET">
+<p>Hattın her <strong>63 saniyede bir tencere</strong> üretmesi gerekir. Bu rakam Adım 5'teki hat dengelemenin, Adım 6'daki makine sayısı hesabının ve Adım 16'daki performans simülasyonunun temel girdisidir.</p>
+</div>
+
+<h2 id="malzeme">4. Malzeme Seçimi</h2>
+<p>Düdüklü tencere gıda ile temas ettiği için malzeme seçimi kritiktir. Türk Gıda Kodeksi ve EN 12778 (basınçlı pişirme aletleri) standartları temel kısıtlardır.</p>
+
+<div class="row cols-3">
+  <div class="metric-card">
+    <div class="label">Gövde & Kapak</div>
+    <div class="value cool">AISI 304</div>
+    <div class="desc">18/8 paslanmaz çelik. Korozyon dayanımı yüksek, gıda temas onaylı. 1.5 mm (gövde), 2.0 mm (kapak).</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Sandviç Taban — Üst</div>
+    <div class="value cool">Al 1050</div>
+    <div class="desc">%99.5 saf alüminyum. Yüksek termal iletkenlik (230 W/mK). 4 mm.</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Sandviç Taban — Alt</div>
+    <div class="value cool">AISI 430</div>
+    <div class="desc">Ferritik paslanmaz çelik. <strong>İndüksiyon uyumlu</strong> (manyetik). 1 mm.</div>
+  </div>
+</div>
+
+<h2 id="hedefler">5. Tasarım Hedefleri</h2>
+
+<ol>
+<li><strong>Üretim kapasitesi:</strong> 100.000 adet/yıl. Tek vardiyada karşılanabilmeli.</li>
+<li><strong>Esneklik:</strong> Model A ve B aynı hatta üretilebilmeli (ürün karması değiştirilebilir).</li>
+<li><strong>Kalite:</strong> TSE 6886 (düdüklü tencere standardı) ve TS EN 12778 uyumu. Hidrostatik test her ürüne uygulanmalı.</li>
+<li><strong>Verimlilik:</strong> Hat verimi en az %70, makine kullanımı en az %60.</li>
+<li><strong>Ergonomi:</strong> Operatör başına maks. 25 op/vardiya. U-tipi hat ile çevriksel çalışma.</li>
+<li><strong>Hücresel üretim:</strong> Ürün ailesi mantığı ile hücreleme. Grouping efficacy ≥ %85 hedeflenir.</li>
+<li><strong>Yerleşim verimliliği:</strong> Akış maliyeti optimize edilmiş yerleşim (CRAFT). Bina alanı &lt; 2.500 m².</li>
+<li><strong>Yatırım:</strong> Toplam CAPEX hedef &lt; $3.5M. Payback &lt; 7 yıl.</li>
+<li><strong>Sürdürülebilirlik:</strong> Sac firesi geri dönüşüm, pasivasyon atıkları lisanslı bertaraf.</li>
+<li><strong>Güvenlik:</strong> ISG mevzuatına uygun, presler için çift el kontrolü, gürültü ≤ 85 dB operatör bölgesinde.</li>
+</ol>
+
+<div class="callout" data-label="SONRAKİ ADIM">
+<p>Tasarım hedefleri belirlendi. Şimdi <strong>21 farklı bileşenin</strong> her birinin tesiste mi üretileceği yoksa dışarıdan mı satın alınacağı kararlaştırılmalı. → <a href="adim2.html">Adım 2: Make-or-Buy Analizi</a></p>
+</div>
+
+<div class="step-pagination"><div></div><a href="adim2.html" class="next"><span class="dir">SONRAKİ ADIM 2 →</span><span class="title">Make-or-Buy</span></a></div></div></div></main>
+
+<footer class="main-footer">
+  <div class="brand">IE 371 · Düdüklü Tencere Üretim Tesisi Projesi</div>
+  <div class="meta">ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ · ENDÜSTRİ MÜHENDİSLİĞİ · 2026</div>
+  <div class="links">
+    <a href="index.html">Ana</a><a href="adimlar.html">18 Adım</a><a href="algoritma.html">Algoritma</a><a href="dosyalar.html">Dosyalar</a>
+  </div>
+  <div class="meta" style="margin-top:1.5rem;color:var(--accent)">14 RAPOR · 3 EXCEL · 8 PYTHON ALGORİTMA · 860 FORMÜL</div>
+</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adım 12 & 13 — Blok Yerleşim Planı — IE 371 Projesi</title>
+<meta name="description" content="IE 371 — CRAFT algoritması ve SLP metodu ile Alternatif Blok Yerleşim Planlarının tasarımı ve değerlendirilmesi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* Tesis Krokisi (Grid) Özel Stilleri */
+  .layout-map {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    grid-template-rows: 150px 100px 150px;
+    gap: 10px;
+    background: var(--bg-deep);
+    padding: 15px;
+    border: 2px dashed var(--line);
+    border-radius: 8px;
+    margin: 2rem 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: #fff;
+  }
+  .block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    text-align: center;
+    padding: 10px;
+    transition: transform 0.2s;
+  }
+  .block:hover { transform: scale(1.02); }
+  .block span { opacity: 0.8; font-size: 0.75rem; margin-top: 5px; }
+  
+  /* Departman Renkleri */
+  .b-ham { background: #34495e; } /* Hammadde */
+  .b-h1 { background: #e74c3c; } /* Hücre 1 Pres */
+  .b-h2 { background: #f39c12; } /* Hücre 2 Talaşlı */
+  .b-h3 { background: #27ae60; } /* Hücre 3 Montaj */
+  .b-mam { background: #2980b9; } /* Mamul Depo */
+  .b-ofis { background: #8e44ad; grid-row: span 2; } /* İdari */
+  .b-bakim { background: #7f8c8d; } /* Takımhane/Bakım */
+  
+  /* Akış Yönü Okları */
+  .flow-arrows {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin: 1rem 0;
+  }
+</style>
+</head>
+<body>
+
+<nav class="main-nav">
+  <a href="index.html" class="nav-logo">IE 371 · DÜDÜKLÜ TENCERE</a>
+  <div class="nav-links">
+    <a href="index.html">Ana</a>
+    <a href="urun.html">Ürün</a>
+    <a href="adimlar.html" class="active">18 Adım</a>
+    <a href="algoritma.html">Algoritma</a>
+    <a href="karsilastirma.html">Karşılaştırma</a>
+    <a href="sonuclar.html">Sonuçlar</a>
+    <a href="sss.html">SSS</a>
+    <a href="dosyalar.html">Dosyalar</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Ana</a><span>/</span><a href="adimlar.html">18 Adım</a><span>/</span>Adım 12 & 13</div>
+    <div class="page-step-tag">ADIM 12 & 13</div>
+    <h1 class="page-title">Blok Yerleşim ve <em>CRAFT Analizi.</em></h1>
+    <p class="page-subtitle">Adım 10'daki alan değerleri ve Adım 11'deki REL matrisi baz alınarak U-Tipi tesis yerleşiminin oluşturulması ve CRAFT algoritması ile değerlendirilmesi.</p>
+  </div>
+</header>
+
+<main>
+  <div class="content-grid">
+    <aside class="sidebar">
+      <div class="sidebar-title">Sayfada</div>
+      <nav>
+        <a href="#strateji">Yerleşim Stratejisi</a>
+        <a href="#kroki">Seçilen Yerleşim (U-Tip)</a>
+        <a href="#craft">CRAFT Optimizasyonu</a>
+        <a href="#sonuc">Değerlendirme</a>
+      </nav>
+    </aside>
+
+    <div class="prose">
+      <h2 id="strateji">1. Yerleşim Stratejisi ve Akış Tipi</h2>
+      <p class="lead">Tesis tasarımı literatüründe en verimli malzeme akış tiplerinden biri <strong>"U-Tipi (U-Shape) Akış"</strong>tır. Bu modelde hammadde girişi ve mamul çıkışı aynı cephede (genellikle ön cephe) bulunur. Bu sayede sevkiyat tırlarının ve forklift trafiğinin tek bir alanda toplanması sağlanır.</p>
+      
+      <p><strong>REL Matrisi Kısıtlarımız (Adım 11 Hatırlatması):</strong></p>
+      <ul>
+        <li>Hücre 1 (Ağır Pres) ile İdari Ofisler kesinlikle uzak (X ilişkisi) olmalı.</li>
+        <li>Hücre 1, Hücre 2 ve Hücre 3 birbirini takip etmeli (A ve E ilişkileri).</li>
+        <li>Toplam alan ~2.400 m² sınırında kalmalı.</li>
+      </ul>
+
+      <h2 id="kroki">2. Seçilen Blok Yerleşim Planı (Alt-1: U-Tip)</h2>
+      <p>Aşağıda, ilişkiler ve metrekare (m²) oranları dikkate alınarak tasarlanmış nihai tesis kuşbakışı blok krokisi yer almaktadır.</p>
+
+      <div class="flow-arrows">
+        <span>GİRİŞ (Hammadde) ➔</span>
+        <span>ÜRETİM HÜCRELERİ ➔</span>
+        <span>ÇIKIŞ (Mamul)</span>
+      </div>
+
+      <div class="layout-map">
+        <div class="block b-ham">1. Hammadde Deposu <span>280 m²</span></div>
+        <div class="block b-h1">2. HÜCRE 1 (Ağır Pres) <span>540 m²</span></div>
+        <div class="block b-h2">3. HÜCRE 2 (Talaşlı) <span>255 m²</span></div>
+        
+        <div class="block b-ofis">7. İdari & Sosyal Ofisler <span>330 m²</span><br><br><small>(Üretimden İzole Edilmiş Ses & Toz Bariyeri)</small></div>
+        <div class="block b-bakim">6. Takımhane / Bakım <span>75 m²</span></div>
+        <div class="block b-h3" style="grid-row: span 2;">4. HÜCRE 3 (Yüzey & Montaj) <span>330 m² + 120 m²</span></div>
+        
+        <div class="block b-mam">5. Mamul Deposu <span>350 m²</span></div>
+        <div class="block b-bakim" style="background:#555">Ara Stok (WIP) <span>120 m²</span></div>
+      </div>
+
+      <div class="callout cool" data-label="MÜHENDİSLİK DETAYI">
+        <p>Yukarıdaki planda <strong>Hücre 1 (Ağır Pres)</strong> ile <strong>İdari Ofisler</strong> tesisin birbirine en uzak zıt köşelerine yerleştirilmiştir. Böylece Adım 11'de belirlenen Gürültü ve Titreşim kısıtı (X ilişkisi) başarıyla sağlanmıştır.</p>
+      </div>
+
+      <h2 id="craft">3. CRAFT Algoritması ile Değerlendirme</h2>
+      <p>Tasarladığımız bu yerleşim (Layout), <strong>CRAFT (Computerized Relative Allocation of Facilities Technique)</strong> algoritması mantığıyla doğrulanmıştır. CRAFT, bölümler arası malzeme taşıma maliyetini minimize etmeyi hedefler.</p>
+
+      <div class="formula">
+        $Minimize \ Z = \sum_{i=1}^{n} \sum_{j=1}^{n} v_{ij} \times u_{ij} \times d_{ij}$
+      </div>
+      
+      <ul>
+        <li><strong>$v_{ij}$ :</strong> i ve j departmanları arasındaki taşıma hacmi (trip/gün).</li>
+        <li><strong>$u_{ij}$ :</strong> Birim taşıma maliyeti (Forklift/Transpalet/Manuel).</li>
+        <li><strong>$d_{ij}$ :</strong> İki departman merkezleri arasındaki doğrusal olmayan (rectilinear) mesafe.</li>
+      </ul>
+
+      <h2 id="sonuc">4. Değerlendirme Sonucu</h2>
+      
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Yerleşim Alternatifi</th><th>Akış Tipi</th><th>Günlük Taşıma Mesafesi</th><th>REL Skoru</th></tr></thead>
+          <tbody>
+            <tr><td>Alternatif 1 (Seçilen)</td><td>U-Tipi Akış</td><td class="num good">1.450 metre</td><td class="num good">94/100</td></tr>
+            <tr><td>Alternatif 2 (Reddedilen)</td><td>Düz Hat (I-Tipi)</td><td class="num warn">2.100 metre</td><td class="num">72/100</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>I-Tipi (Düz) hatta, sevkiyat için binanın iki ayrı ucuna tır yanaşma rampası yapılması gerekiyordu. <strong>U-Tipi yerleşim</strong> seçilerek altyapı maliyetleri ve forklift geri dönüş süreleri (empty travel) %30 oranında azaltılmıştır.</p>
+
+      <div class="step-pagination">
+        <a href="adim11.html"><span class="dir">← ÖNCEKİ ADIM 11</span><span class="title">İlişki Diyagramı</span></a>
+        <a href="adim14.html" class="next"><span class="dir">SONRAKİ ADIM 14 & 15 →</span><span class="title">Malzeme Taşıma Sistemi</span></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="main-footer">
+  <div class="brand">IE 371 · Düdüklü Tencere Üretim Tesisi Projesi</div>
+  <div class="meta">ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ · ENDÜSTRİ MÜHENDİSLİĞİ · 2026</div>
+  <div class="links">
+    <a href="index.html">Ana</a><a href="adimlar.html">18 Adım</a><a href="algoritma.html">Algoritma</a><a href="dosyalar.html">Dosyalar</a>
+  </div>
+</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>

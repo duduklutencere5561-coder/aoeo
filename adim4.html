@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adım 4 — Operasyon Süreç — IE 371 Projesi</title>
+<meta name="description" content="IE 371 — 91 operasyon, 13 MAKE bileşen için detaylı süreç akışları">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="main-nav">
+  <a href="index.html" class="nav-logo">IE 371 · DÜDÜKLÜ TENCERE</a>
+  <div class="nav-links">
+    <a href="index.html">Ana</a>
+    <a href="urun.html">Ürün</a>
+    <a href="adimlar.html" class="active">18 Adım</a>
+    <a href="algoritma.html">Algoritma</a>
+    <a href="karsilastirma.html">Karşılaştırma</a>
+    <a href="sonuclar.html">Sonuçlar</a>
+    <a href="sss.html">SSS</a>
+    <a href="dosyalar.html">Dosyalar</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Ana</a><span>/</span><a href="adimlar.html">18 Adım</a><span>/</span>Adım 4</div>
+    <div class="page-step-tag">ADIM 04</div>
+    <h1 class="page-title">Operasyon süreç <em>şemaları (OPC).</em></h1>
+    <p class="page-subtitle">13 MAKE bileşeninin her biri için detaylı operasyon akışı. Operasyon (O), Taşıma (T), Muayene (I), Bekleme (D), Depo (S) sembolleri ile.</p>
+  </div>
+</header><main><div class="content-grid"><aside class="sidebar"><div class="sidebar-title">Sayfada</div><nav><a href="#semboller">OPC Sembolleri</a><a href="#govde">Gövde Akışı</a><a href="#kapak">Kapak Akışı</a><a href="#sandvic">Sandviç Akışı</a><a href="#montaj">Son Montaj</a><a href="#ozet">Toplam Süre</a></nav></aside><div class="prose">
+
+<h2 id="semboller">1. OPC Sembolleri ve Kullanım</h2>
+<p class="lead">Operation Process Chart (OPC), bir ürünün hammaddeden bitmiş ürüne kadar tüm operasyonlarını sırasıyla gösterir. Sembolleri:</p>
+
+<div class="row cols-4">
+<div class="metric-card"><div class="label">Operasyon</div><div class="value">○</div><div class="desc">Şekillendirme, kaynak, kesim — değer katan iş</div></div>
+<div class="metric-card"><div class="label">Taşıma</div><div class="value">→</div><div class="desc">Bir yerden başka yere hareket</div></div>
+<div class="metric-card"><div class="label">Muayene</div><div class="value">□</div><div class="desc">Kalite kontrol, ölçüm</div></div>
+<div class="metric-card"><div class="label">Bekleme</div><div class="value">D</div><div class="desc">İşlem öncesi/sonrası gecikme</div></div>
+</div>
+
+<h2 id="govde">2. Ana Gövde Üretim Akışı (13 operasyon)</h2>
+<p>Hammaddeden bitmiş gövdeye toplam <strong>13 operasyon</strong>, kümülatif süre <strong>~280 saniye</strong>.</p>
+
+<div class="table-wrap">
+<table class="data">
+<thead><tr><th>#</th><th>Operasyon</th><th>Makine/Ekipman</th><th>Süre (sn)</th><th>Fire</th><th>Çıktı</th></tr></thead>
+<tbody>
+<tr><td class="num">3.1.1</td><td>Rulo açma (uncoiling)</td><td>Akyapak rulo açıcı</td><td class="num">5</td><td class="num">%0.5</td><td>Düz sac şerit</td></tr>
+<tr><td class="num">3.1.2</td><td>Düzleştirme (leveling)</td><td>Şahinler düzleştirici</td><td class="num">4</td><td class="num">%0.3</td><td>Düzgün şerit</td></tr>
+<tr><td class="num">3.1.3</td><td>Daire kesim (blanking)</td><td>Hidroliksan 200t pres</td><td class="num">8</td><td class="num warn">%5-8</td><td>Daire disk (Ø280)</td></tr>
+<tr><td class="num">3.1.4</td><td>Derin çekme 1. operasyon</td><td>Hürsan 400t hidrolik pres</td><td class="num">6</td><td class="num warn">%2-4</td><td>Yarım kase formu</td></tr>
+<tr><td class="num">3.1.5</td><td>Tavlama (annealing)</td><td>Sistem Teknik bantlı fırın 750°C</td><td class="num">6 (akış)</td><td class="num">%0</td><td>Yumuşatılmış parça</td></tr>
+<tr><td class="num">3.1.6</td><td>Derin çekme 2. operasyon (final)</td><td>Hürsan 400t pres</td><td class="num">6</td><td class="num">%1</td><td>Tencere gövdesi</td></tr>
+<tr><td class="num">3.1.7</td><td>Trim & Bead (kenar düzeltme)</td><td>Lucas trim makinesi</td><td class="num">5</td><td class="num">%0.5</td><td>Düzgün kenarlı gövde</td></tr>
+<tr><td class="num">3.1.8</td><td>Yıkama & yağ alma</td><td>Pal-Tek tunel yıkama</td><td class="num">4 (akış)</td><td class="num">%0</td><td>Temiz gövde</td></tr>
+<tr><td class="num">3.1.9</td><td>Polisaj (parlatma)</td><td>Costa Levigatrici + Autopulit</td><td class="num">10</td><td class="num">%0.5</td><td>Ayna parlak yüzey</td></tr>
+<tr><td class="num">3.1.10</td><td>Pasivasyon (HNO₃ banyosu)</td><td>Galvano pasivasyon hattı</td><td class="num">8 (akış)</td><td class="num">%0</td><td>Korozyon koruması</td></tr>
+<tr><td class="num">3.1.11</td><td>Yıkama-2 (post-pasivasyon)</td><td>Pal-Tek</td><td class="num">4</td><td class="num">%0</td><td>Asit kalıntısız gövde</td></tr>
+<tr><td class="num">3.1.12</td><td>Kalite kontrol (görsel + ölçü)</td><td>Kalite Lab</td><td class="num">3</td><td class="num">%0.2</td><td>Onaylı gövde</td></tr>
+<tr><td class="num">3.1.13</td><td>Ara stoğa transfer</td><td>Hücre içi konveyör</td><td class="num">2</td><td class="num">%0</td><td>D03 ara stok</td></tr>
+<tr class="total"><td colspan="3"><strong>GÖVDE TOPLAM ÇEVRİM</strong></td><td class="num"><strong>71 sn</strong></td><td class="num"><strong>~%8-10</strong></td><td></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="kapak">3. Kapak Üretim Akışı (10 operasyon)</h2>
+<p>Kapak gövde ile benzer süreç, ama 2 mm sac kullanıldığı için derin çekme tek aşamada. Kümülatif süre <strong>~210 saniye</strong>.</p>
+
+<ol>
+<li><strong>Rulo açma</strong> — Akyapak rulo açıcı, 5 sn</li>
+<li><strong>Düzleştirme</strong> — Şahinler, 4 sn</li>
+<li><strong>Daire kesim</strong> — Hidroliksan 200t, 8 sn (Ø260)</li>
+<li><strong>Derin çekme (tek operasyon)</strong> — Hürsan 400t, 7 sn</li>
+<li><strong>Trim & bead</strong> — Lucas, 5 sn</li>
+<li><strong>Delme (kulp deliği + valf yuvası)</strong> — CNC + delici, 9 sn</li>
+<li><strong>Yıkama & polisaj</strong> — Pal-Tek + Costa, 12 sn (akış)</li>
+<li><strong>Pasivasyon</strong> — Galvano, 8 sn (akış)</li>
+<li><strong>Kalite kontrol</strong> — 3 sn</li>
+<li><strong>Ara stoğa transfer</strong> — 2 sn</li>
+</ol>
+
+<h2 id="sandvic">4. Sandviç Taban Üretim Akışı (Hücre 2)</h2>
+<p>Bu özel bir akıştır: Al 1050 + 430 sac iki paralel hat işlenir, sonra <strong>impact bonding</strong> ile birleştirilir.</p>
+
+<div class="callout cool" data-label="PARALEL AKIŞ">
+<p><strong>Sol kol:</strong> Al rulo → açma → kesim (Ø180/200) → tavlama (450°C) → yüzey temizleme<br>
+<strong>Sağ kol:</strong> 430 rulo → açma → kesim (Ø185/205) → fosfatlama → kurutma<br>
+<strong>Birleşme:</strong> Aida impact bonding presi 800 ton — soğuk birleşim (cold welding) ile Al-430 katmanları kalıcı olarak birleşir.</p>
+</div>
+
+<div class="table-wrap">
+<table class="data">
+<thead><tr><th>Adım</th><th>İşlem</th><th>Süre (sn)</th><th>Makine</th></tr></thead>
+<tbody>
+<tr><td>3.3.1-3</td><td>Al rulo açma + kesim</td><td class="num">15 (paralel)</td><td>Mini pres</td></tr>
+<tr><td>3.4.1-3</td><td>430 rulo açma + kesim</td><td class="num">15 (paralel)</td><td>Mini pres</td></tr>
+<tr><td>3.5.1</td><td>İstifleme (Al üstte, 430 altta)</td><td class="num">4</td><td>Hizalama robotu</td></tr>
+<tr><td>3.5.2</td><td>Impact bonding presi (800 t darbe)</td><td class="num">18</td><td>Aida 800t</td></tr>
+<tr><td>3.5.3</td><td>Yüzey kontrolü + boyut ölçümü</td><td class="num">4</td><td>Kalite Lab</td></tr>
+<tr><td>3.5.4</td><td>Gövde tabanına nokta kaynağı (4 nokta)</td><td class="num">8</td><td>Tecna projeksiyon kaynak</td></tr>
+<tr class="total"><td colspan="2"><strong>SANDVİÇ TABAN TOPLAM</strong></td><td class="num"><strong>34 sn</strong></td><td>(paralel akış)</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="montaj">5. Son Montaj Hattı — 3 İstasyon (Hücre 3)</h2>
+<p>Tüm parçaların birleştirildiği final aşama. <strong>U-tipi 3 istasyon × 2 operatör</strong> konfigürasyonunda çalışır.</p>
+
+<div class="row cols-3">
+<div class="metric-card">
+<div class="label">İstasyon 1 — Gövde Hattı</div>
+<div class="value">25<span class="unit">sn</span></div>
+<div class="desc">Gövde + yan kulplar montajı, kalıcı perçinleme, vidalama.</div>
+</div>
+<div class="metric-card">
+<div class="label">İstasyon 2 — Kapak Hattı</div>
+<div class="value">33<span class="unit">sn</span></div>
+<div class="desc">Kapak + üst kulp + O-ring + basınç regülatörü + sigorta valfi montajı.</div>
+</div>
+<div class="metric-card">
+<div class="label">İstasyon 3 — Test + Ambalaj</div>
+<div class="value">34<span class="unit">sn</span></div>
+<div class="desc">Hidrostatik test (2.5 bar) → lazer marker → karton kutuya yerleştirme.</div>
+</div>
+</div>
+
+<h2 id="ozet">6. Toplam Operasyon Sayısı</h2>
+
+<div class="table-wrap">
+<table class="data">
+<thead><tr><th>Üretim Akışı</th><th>Operasyon Sayısı</th><th>Kümülatif Süre</th></tr></thead>
+<tbody>
+<tr><td>Ana Gövde (Hücre 1)</td><td class="num">13</td><td class="num">71 sn</td></tr>
+<tr><td>Kapak (Hücre 1)</td><td class="num">10</td><td class="num">63 sn</td></tr>
+<tr><td>Sandviç Taban (Hücre 2)</td><td class="num">8</td><td class="num">34 sn</td></tr>
+<tr><td>Bakalit Kulplar (Hücre 4)</td><td class="num">5</td><td class="num">60 sn (kürlenme)</td></tr>
+<tr><td>Basınç Regülatörü (Hücre 3 + CNC)</td><td class="num">12</td><td class="num">45 sn</td></tr>
+<tr><td>Küçük Parçalar (alev kalkanı, süzgeç vb.)</td><td class="num">18</td><td class="num">~70 sn</td></tr>
+<tr><td>Son Montaj Hattı (Hücre 3)</td><td class="num">25 (3 istasyon)</td><td class="num">92 sn (toplam görev)</td></tr>
+<tr class="total"><td><strong>TOPLAM FARKLI OPERASYON</strong></td><td class="num"><strong>91</strong></td><td class="num"><strong>~12-15 dk lead time</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout good" data-label="ÖZET">
+<p>Toplam <strong>91 farklı operasyon</strong>. Bir tencerenin tesise giriş-çıkış süresi (lead time) <strong>12-15 dakika</strong>. Bu süre Hücre 1'den son montaja kadar tüm aşamaları kapsar; <strong>son montaj hattı içindeki süre 92 sn</strong> (Adım 16 simülasyonu).</p>
+</div>
+
+<div class="step-pagination"><a href="adim3.html"><span class="dir">← ÖNCEKİ ADIM 3</span><span class="title">BOM & Ürün Ağacı</span></a><a href="adim5.html" class="next"><span class="dir">SONRAKİ ADIM 5 →</span><span class="title">Öncelik Diyagramları</span></a></div></div></div></main>
+
+<footer class="main-footer">
+  <div class="brand">IE 371 · Düdüklü Tencere Üretim Tesisi Projesi</div>
+  <div class="meta">ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ · ENDÜSTRİ MÜHENDİSLİĞİ · 2026</div>
+  <div class="links">
+    <a href="index.html">Ana</a><a href="adimlar.html">18 Adım</a><a href="algoritma.html">Algoritma</a><a href="dosyalar.html">Dosyalar</a>
+  </div>
+  <div class="meta" style="margin-top:1.5rem;color:var(--accent)">14 RAPOR · 3 EXCEL · 8 PYTHON ALGORİTMA · 860 FORMÜL</div>
+</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adım 2 — Make-or-Buy — IE 371 Projesi</title>
+<meta name="description" content="IE 371 — 21 bileşenin Make-or-Buy analizi: 13 MAKE + 8 BUY kararı">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="main-nav">
+  <a href="index.html" class="nav-logo">IE 371 · DÜDÜKLÜ TENCERE</a>
+  <div class="nav-links">
+    <a href="index.html">Ana</a>
+    <a href="urun.html">Ürün</a>
+    <a href="adimlar.html" class="active">18 Adım</a>
+    <a href="algoritma.html">Algoritma</a>
+    <a href="karsilastirma.html">Karşılaştırma</a>
+    <a href="sonuclar.html">Sonuçlar</a>
+    <a href="sss.html">SSS</a>
+    <a href="dosyalar.html">Dosyalar</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Ana</a><span>/</span><a href="adimlar.html">18 Adım</a><span>/</span>Adım 2</div>
+    <div class="page-step-tag">ADIM 02</div>
+    <h1 class="page-title">Make-or-Buy <em>analizi.</em></h1>
+    <p class="page-subtitle">21 farklı bileşenin her biri için, tesiste üretmenin mi yoksa hazır satın almanın mı daha avantajlı olduğunun başabaş noktası analizi.</p>
+  </div>
+</header><main><div class="content-grid"><aside class="sidebar"><div class="sidebar-title">Sayfada</div><nav><a href="#kriter">Karar Kriterleri</a><a href="#yontem">Yöntem - BEP</a><a href="#bilesenler">21 Bileşen</a><a href="#sonuc">Karar Tablosu</a><a href="#ozet">Özet</a></nav></aside><div class="prose">
+
+<h2 id="kriter">1. Karar Kriterleri</h2>
+<p class="lead">Make-or-Buy analizinde her bileşen 6 farklı kritere göre değerlendirilir. Tek bir kritere göre karar verilmez; ağırlıklı puanlama ile karar alınır.</p>
+
+<div class="table-wrap">
+<table class="data">
+<thead><tr><th>Kriter</th><th>Ağırlık</th><th>Make Lehine</th><th>Buy Lehine</th></tr></thead>
+<tbody>
+<tr><td><strong>Birim maliyet</strong></td><td class="num">%30</td><td>Yüksek hacim, kalıp amortismanı kapanır</td><td>Düşük hacim, tedarikçi ekonomik ölçeği</td></tr>
+<tr><td><strong>Yatırım gereksinimi</strong></td><td class="num">%20</td><td>Mevcut kapasite kullanılır</td><td>Yeni makine yatırımı yüksek</td></tr>
+<tr><td><strong>Teknik uzmanlık</strong></td><td class="num">%15</td><td>Şirketin uzmanlık alanı</td><td>Tedarikçi daha uzman</td></tr>
+<tr><td><strong>Kalite kontrol</strong></td><td class="num">%15</td><td>Kritik kalite, kontrol içeride</td><td>Standart parça, kalite tedarikçide</td></tr>
+<tr><td><strong>Tedarik güvenliği</strong></td><td class="num">%10</td><td>Tek tedarikçi riski</td><td>Çoklu tedarikçi mevcut</td></tr>
+<tr><td><strong>Esneklik</strong></td><td class="num">%10</td><td>Tasarım değişiklikleri sık</td><td>Standart parça, değişiklik az</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="yontem">2. Başabaş Analizi (BEP)</h2>
+<p>Her bileşen için sayısal karar başabaş noktası (Break-Even Point) ile verilir:</p>
+
+<div class="formula">
+BEP = Sabit Maliyet Farkı / (Buy Birim Fiyat − Make Birim Maliyet)<br>
+<span class="desc">Yıllık adet eşiği</span>
+</div>
+
+<p>Eğer <code class="inline">Yıllık Üretim &gt; BEP</code> ise MAKE avantajlıdır. Bu projede yıllık talep 100.000 adet, eşik genelde 30.000-50.000 arasıdır. Yine de teknik kısıtlar (kalıp ihtiyacı, uzmanlık) da değerlendirilmiştir.</p>
+
+<h2 id="bilesenler">3. 21 Bileşen — Detaylı Karar Tablosu</h2>
+
+<div class="table-wrap">
+<table class="data">
+<thead><tr><th>#</th><th>Bileşen</th><th>Karar</th><th>BEP (adet/yıl)</th><th>Tedarikçi / Kalıp</th><th>Birim Maliyet</th><th>Gerekçe</th></tr></thead>
+<tbody>
+<tr class="section"><td colspan="7">METAL BİLEŞENLER (12 MAKE)</td></tr>
+<tr><td class="num">1</td><td><strong>Ana Gövde</strong> (304 sac)</td><td class="good">MAKE</td><td class="num">22.500</td><td>Özel kalıp $45k</td><td class="num">$3.20</td><td>Yüksek hacim, kritik parça, derin çekme uzmanlığı</td></tr>
+<tr><td class="num">2</td><td><strong>Kapak</strong> (304 sac)</td><td class="good">MAKE</td><td class="num">28.000</td><td>Özel kalıp $38k</td><td class="num">$2.10</td><td>Gövde ile aynı hatta, kalıp paylaşımı</td></tr>
+<tr><td class="num">3</td><td><strong>Al Disk</strong> (1050)</td><td class="good">MAKE</td><td class="num">15.000</td><td>Blanking presi</td><td class="num">$0.85</td><td>Sandviç tabanın iç katmanı, basit kesim</td></tr>
+<tr><td class="num">4</td><td><strong>430 Sac Disk</strong></td><td class="good">MAKE</td><td class="num">18.000</td><td>Blanking presi</td><td class="num">$0.65</td><td>İndüksiyon tabanı, paylaşılan pres</td></tr>
+<tr><td class="num">5</td><td><strong>Buhar Tahliye Borusu</strong></td><td class="good">MAKE</td><td class="num">35.000</td><td>CNC + boru kesme</td><td class="num">$0.45</td><td>Hassas tolerans, gizli kalite kritik</td></tr>
+<tr><td class="num">6</td><td><strong>Gösterge Pimi</strong></td><td class="good">MAKE</td><td class="num">40.000</td><td>CNC kayar otomat</td><td class="num">$0.18</td><td>CNC paylaşımı ile düşük maliyet</td></tr>
+<tr><td class="num">7</td><td><strong>Kulp Kulağı</strong></td><td class="good">MAKE</td><td class="num">30.000</td><td>Progresif pres</td><td class="num">$0.32</td><td>Yıllık 200k+ adet, pres ekonomik</td></tr>
+<tr><td class="num">8</td><td><strong>Alev Kalkanı</strong></td><td class="good">MAKE</td><td class="num">25.000</td><td>Eksantrik pres</td><td class="num">$0.22</td><td>Standart sac, pres yeterli</td></tr>
+<tr><td class="num">9</td><td><strong>Süzgeç</strong></td><td class="good">MAKE</td><td class="num">32.000</td><td>Progresif pres + delici</td><td class="num">$0.28</td><td>Çok delikli, kalıp özel</td></tr>
+<tr><td class="num">10</td><td><strong>Bakalit Kulplar</strong></td><td class="good">MAKE</td><td class="num">45.000</td><td>Enjeksiyon × 3 makine</td><td class="num">$1.10</td><td>Yıllık 300k+ adet (3 kulp/tencere)</td></tr>
+<tr><td class="num">11</td><td><strong>Basınç Regülatörü Gövde</strong></td><td class="good">MAKE</td><td class="num">38.000</td><td>CNC + montaj</td><td class="num">$1.45</td><td>Güvenlik kritik parça, içeride üretmeli</td></tr>
+<tr><td class="num">12</td><td><strong>Hidrostatik Test Operasyonu</strong></td><td class="good">MAKE</td><td>—</td><td>ZwickRoell standı</td><td class="num">$0.08</td><td>Her ürün test edilir, dışarı verilmez</td></tr>
+<tr><td class="num">16</td><td><strong>Valf ve Pim Yayları</strong></td><td class="good">MAKE</td><td class="num">42.000</td><td>Yay sarma + tavlama</td><td class="num">$0.14</td><td>Yıllık 500k+ yay (4-5 yay/tencere)</td></tr>
+
+<tr class="section"><td colspan="7">SATIN ALINAN BİLEŞENLER (8 BUY)</td></tr>
+<tr><td class="num">13</td><td><strong>Silikon O-Ring Conta</strong></td><td class="warn">BUY</td><td>—</td><td>Trelleborg / Burgmann</td><td class="num">$0.35</td><td>Özel formül silikon, FDA onaylı, dışarıda uzmanlık</td></tr>
+<tr><td class="num">14</td><td><strong>Sigorta Valfi</strong></td><td class="warn">BUY</td><td>—</td><td>Schaeffler / KSB</td><td class="num">$1.85</td><td>Sertifikalı emniyet valfi, üretim hacmi düşük</td></tr>
+<tr><td class="num">15</td><td><strong>Basınç Göstergesi</strong></td><td class="warn">BUY</td><td>—</td><td>Wika / Bourdon</td><td class="num">$0.95</td><td>Hassas yay-piston, ölçüm kalibrasyonu özel</td></tr>
+<tr><td class="num">17</td><td><strong>Paslanmaz Vidalar (M4-M6)</strong></td><td class="warn">BUY</td><td>—</td><td>Standart tedarikçi</td><td class="num">$0.02</td><td>Standart 304 vida, dünyada bol miktarda</td></tr>
+<tr><td class="num">18</td><td><strong>Alüminyum Perçinler</strong></td><td class="warn">BUY</td><td>—</td><td>Standart tedarikçi</td><td class="num">$0.01</td><td>Standart perçin, çok düşük birim fiyat</td></tr>
+<tr><td class="num">19</td><td><strong>Bakalit Reçine (BMC)</strong></td><td class="warn">BUY</td><td>—</td><td>Bakelite GmbH</td><td class="num">$3.50/kg</td><td>Hammadde, üretmek imkânsız</td></tr>
+<tr><td class="num">20</td><td><strong>Ambalaj Kartonu</strong></td><td class="warn">BUY</td><td>—</td><td>Sefa Ambalaj</td><td class="num">$0.28</td><td>Standart oluklu mukavva</td></tr>
+<tr><td class="num">21</td><td><strong>Kullanım Kılavuzu (basılı)</strong></td><td class="warn">BUY</td><td>—</td><td>Yerel matbaa</td><td class="num">$0.05</td><td>Standart matbaa hizmeti</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="sonuc">4. Karar Özeti</h2>
+
+<div class="metrics-row">
+  <div class="metric-card">
+    <div class="label">Make kararı</div>
+    <div class="value good">13</div>
+    <div class="desc">Tesiste üretilecek bileşenler ve son montaj.</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Buy kararı</div>
+    <div class="value warn">8</div>
+    <div class="desc">Hazır satın alınacak standart/özel parçalar.</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Toplam bileşen</div>
+    <div class="value">21</div>
+    <div class="desc">Ürün ağacındaki tüm kalemlerin sayısı.</div>
+  </div>
+</div>
+
+<h2 id="ozet">5. Toplam Maliyet Etkisi</h2>
+
+<div class="table-wrap">
+<table class="data">
+<thead><tr><th>Maliyet Kalemi</th><th>Birim Maliyet</th><th>Model A (5L)</th><th>Model B (7L)</th></tr></thead>
+<tbody>
+<tr><td>MAKE bileşenlerin malzeme maliyeti</td><td>değişken</td><td class="num">$4.80</td><td>$5.85</td></tr>
+<tr><td>MAKE bileşenlerin işçilik + amortisman</td><td>değişken</td><td class="num">$3.20</td><td>$3.80</td></tr>
+<tr><td>BUY bileşen toplam maliyeti</td><td>standart</td><td class="num">$2.45</td><td>$2.55</td></tr>
+<tr><td>Genel üretim giderleri (overhead)</td><td>%18 zam</td><td class="num">$1.88</td><td>$2.20</td></tr>
+<tr class="total"><td><strong>BİRİM ÜRETİM MALİYETİ</strong></td><td></td><td class="num"><strong>$12.33</strong></td><td><strong>$14.40</strong></td></tr>
+<tr><td>Hedef perakende fiyat</td><td></td><td class="num">$25-30</td><td>$32-40</td></tr>
+<tr><td>Brüt kâr marjı</td><td></td><td class="num good">%50-60</td><td>%55-64</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout good" data-label="ÇIKARIM">
+<p>13 MAKE + 8 BUY kararı toplam birim üretim maliyetini Model A için <strong>$12.33</strong>, Model B için <strong>$14.40</strong> seviyesinde tutar. Hedef satış fiyatı %50+ brüt kâr marjı bırakır. Bu Adım 18'deki finansal analizin ($3.50M ciro) temelidir.</p>
+</div>
+
+<div class="step-pagination"><a href="adim1.html"><span class="dir">← ÖNCEKİ ADIM 1</span><span class="title">Ürün Tanımı</span></a><a href="adim3.html" class="next"><span class="dir">SONRAKİ ADIM 3 →</span><span class="title">BOM & Ürün Ağacı</span></a></div></div></div></main>
+
+<footer class="main-footer">
+  <div class="brand">IE 371 · Düdüklü Tencere Üretim Tesisi Projesi</div>
+  <div class="meta">ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ · ENDÜSTRİ MÜHENDİSLİĞİ · 2026</div>
+  <div class="links">
+    <a href="index.html">Ana</a><a href="adimlar.html">18 Adım</a><a href="algoritma.html">Algoritma</a><a href="dosyalar.html">Dosyalar</a>
+  </div>
+  <div class="meta" style="margin-top:1.5rem;color:var(--accent)">14 RAPOR · 3 EXCEL · 8 PYTHON ALGORİTMA · 860 FORMÜL</div>
+</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>

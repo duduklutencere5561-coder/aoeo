@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adım 9 — Makine Gruplama — IE 371 Projesi</title>
+<meta name="description" content="IE 371 — ROC (Rank Order Clustering) Algoritması ile Hücresel İmalat tasarımı ve makine gruplama.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* Matris Tablosu Özel Stilleri */
+  .matrix-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
+  .matrix-table th, .matrix-table td { border: 1px solid var(--line); padding: 0.5rem; text-align: center; }
+  .matrix-table th { background: var(--bg-elev); color: var(--text-dim); }
+  .matrix-table td.cell-active { background: rgba(255, 107, 53, 0.2); color: var(--accent); font-weight: bold; }
+  .matrix-table td.cell-exception { background: rgba(255, 182, 39, 0.2); color: var(--warn); }
+  .cell-box-1 { border: 2px solid var(--accent) !important; }
+  .cell-box-2 { border: 2px solid var(--accent-cool) !important; }
+  .cell-box-3 { border: 2px solid var(--good) !important; }
+</style>
+</head>
+<body>
+
+<nav class="main-nav">
+  <a href="index.html" class="nav-logo">IE 371 · DÜDÜKLÜ TENCERE</a>
+  <div class="nav-links">
+    <a href="index.html">Ana</a>
+    <a href="urun.html">Ürün</a>
+    <a href="adimlar.html" class="active">18 Adım</a>
+    <a href="algoritma.html">Algoritma</a>
+    <a href="karsilastirma.html">Karşılaştırma</a>
+    <a href="sonuclar.html">Sonuçlar</a>
+    <a href="sss.html">SSS</a>
+    <a href="dosyalar.html">Dosyalar</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Ana</a><span>/</span><a href="adimlar.html">18 Adım</a><span>/</span>Adım 9</div>
+    <div class="page-step-tag">ADIM 09</div>
+    <h1 class="page-title">Hücresel İmalat ve <em>Makine Gruplama.</em></h1>
+    <p class="page-subtitle">Karmaşık parça rotalarını optimize etmek için ROC (Rank Order Clustering) algoritması kullanılarak üretim tesisinin 3 bağımsız imalat hücresine bölünmesi.</p>
+  </div>
+</header>
+
+<main>
+  <div class="content-grid">
+    <aside class="sidebar">
+      <div class="sidebar-title">Sayfada</div>
+      <nav>
+        <a href="#amac">Amacımız</a>
+        <a href="#roc">ROC Algoritması</a>
+        <a href="#sonuc-matrisi">Optimize Matris</a>
+        <a href="#hucreler">Oluşan Hücreler</a>
+        <a href="#performans">Performans (Efficacy)</a>
+      </nav>
+    </aside>
+
+    <div class="prose">
+      <h2 id="amac">1. Neden Hücresel İmalat?</h2>
+      <p class="lead">Geleneksel atölye (Process Layout) tipinde parçalar, makineler arası sürekli gidip gelir. Bu durum "Spagetti Diyagramı" dediğimiz karmaşık malzeme akışına, yüksek taşıma maliyetlerine ve uzun WIP (süreç içi stok) bekleme sürelerine neden olur.</p>
+      <p>Amacımız, benzer üretim rotalarına sahip parçaları (Parts) ve bu parçaları işleyen makineleri (Machines) aynı **Üretim Hücreleri (Cells)** içine alarak tesis içi malzeme akışını minimize etmektir.</p>
+
+      <h2 id="roc">2. ROC (Rank Order Clustering) Algoritması</h2>
+      <p>J.R. King (1980) tarafından geliştirilen bu algoritmada, Parça-Makine matrisindeki satır ve sütunlara ikili sistem (binary) ağırlıkları atanır. İteratif olarak ağırlıklar büyükten küçüğe sıralanarak matrisin "Blok Köşegen (Block-Diagonal)" hale gelmesi sağlanır.</p>
+
+      <div class="callout cool" data-label="PYTHON KODU BİLGİSİ">
+        <p>Proje kapsamında 96 makine ve 21 bileşenden oluşan devasa matrisin elle hesaplanması hata payını artıracağı için süreç, teslim edilen <strong>Python (NumPy/Pandas) kodu</strong> ile çözülmüştür.</p>
+      </div>
+
+      <h2 id="sonuc-matrisi">3. Optimize Edilmiş Parça-Makine Matrisi</h2>
+      <p>Aşağıda, algoritma çalıştırıldıktan sonra bloklanan nihai matrisin sadeleştirilmiş bir özeti yer almaktadır. Renkli kutular oluşan üretim hücrelerini temsil eder.</p>
+
+      <div class="table-wrap">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>Makine \ Parça</th>
+              <th>P1 (Gövde)</th>
+              <th>P2 (Kapak)</th>
+              <th>P4 (Taban)</th>
+              <th>P7 (Valf)</th>
+              <th>P8 (Boru)</th>
+              <th>P12 (Kulp)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>M1 (Hidrolik Pres)</strong></td>
+              <td class="cell-active cell-box-1">1</td>
+              <td class="cell-active cell-box-1">1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td><strong>M2 (Eksantrik Pres)</strong></td>
+              <td class="cell-active cell-box-1">1</td>
+              <td class="cell-active cell-box-1">1</td>
+              <td class="cell-exception">1*</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td><strong>M5 (Kıvırma Mak.)</strong></td>
+              <td class="cell-active cell-box-1">1</td>
+              <td class="cell-active cell-box-1">1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td><strong>M7 (CNC Torna)</strong></td>
+              <td>0</td>
+              <td>0</td>
+              <td class="cell-active cell-box-2">1</td>
+              <td class="cell-active cell-box-2">1</td>
+              <td class="cell-active cell-box-2">1</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td><strong>M9 (Lazer Kaynak)</strong></td>
+              <td>0</td>
+              <td class="cell-exception">1*</td>
+              <td class="cell-active cell-box-2">1</td>
+              <td class="cell-active cell-box-2">1</td>
+              <td class="cell-active cell-box-2">1</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td><strong>M14 (Bakalit Enj.)</strong></td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td class="cell-active cell-box-3">1</td>
+            </tr>
+            <tr>
+              <td><strong>M15 (Polisaj Robotu)</strong></td>
+              <td class="cell-exception">1*</td>
+              <td class="cell-exception">1*</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td class="cell-active cell-box-3">1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="desc" style="font-size:0.85rem;"><em>* İstisnai Hareketler (Exceptional Elements - Yıldızlı alanlar): İlgili hücre dışına çıkan mecburi malzeme hareketleridir (Örn: Gövdenin pres hücresinden çıkıp polisaj hücresine gitmesi).</em></p>
+
+      <h2 id="hucreler">4. Oluşturulan Üretim Hücreleri</h2>
+
+      <div class="metrics-row">
+        <div class="metric-card" style="border-top: 4px solid var(--accent)">
+          <div class="label">Hücre 1: Ağır Pres Hattı</div>
+          <div class="value">A</div>
+          <div class="desc">Gövde ve kapak derin çekme işlemleri. 14 Makine, 8 Operatör.</div>
+        </div>
+        <div class="metric-card" style="border-top: 4px solid var(--accent-cool)">
+          <div class="label">Hücre 2: Talaşlı İmalat</div>
+          <div class="value">B</div>
+          <div class="desc">Taban, valf, boru (CNC, Kaynak). 12 Makine, 5 Operatör.</div>
+        </div>
+        <div class="metric-card" style="border-top: 4px solid var(--good)">
+          <div class="label">Hücre 3: Yüzey & Montaj</div>
+          <div class="value">C</div>
+          <div class="desc">Bakalit üretim, polisaj ve son montaj. 26 Makine, 12 Operatör.</div>
+        </div>
+      </div>
+
+      <h2 id="performans">5. Hücre Performansı: Grouping Efficacy (GE)</h2>
+      <p>Oluşturduğumuz makine gruplarının matematiksel olarak ne kadar başarılı olduğunu ölçmek için Kumar & Chandrasekharan'ın (1990) <strong>Grouping Efficacy ($\tau$)</strong> formülü kullanılmıştır.</p>
+
+      <div class="formula">
+        $\tau = \frac{e - e_v}{e + e_o}$
+      </div>
+      
+      <ul>
+        <li><strong>e:</strong> Matristeki toplam işlem (1) sayısı (Toplam 84 operasyon)</li>
+        <li><strong>$e_v$:</strong> İstisnai eleman sayısı (Hücre dışı taşıma, 7 adet)</li>
+        <li><strong>$e_o$:</strong> Hücre içindeki boş (0) eleman sayısı (11 adet)</li>
+      </ul>
+
+      <div class="callout good" data-label="SONUÇ">
+        <p>Algoritma sonucunda tesisin <strong>Gruplama Etkinliği (Grouping Efficacy) %81.05</strong> olarak hesaplanmıştır. Endüstriyel bir tesis tasarımı için %75'in üzerindeki değerler mükemmel kabul edilir. Bu durum hücreler arası taşımaların minimuma indirildiğini kanıtlar.</p>
+      </div>
+
+      <div class="step-pagination">
+        <a href="adim8.html"><span class="dir">← ÖNCEKİ ADIM 8</span><span class="title">Hat Dengeleme</span></a>
+        <a href="adim10.html" class="next"><span class="dir">SONRAKİ ADIM 10 →</span><span class="title">Alan İhtiyaçları</span></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="main-footer">
+  <div class="brand">IE 371 · Düdüklü Tencere Üretim Tesisi Projesi</div>
+  <div class="meta">ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ · ENDÜSTRİ MÜHENDİSLİĞİ · 2026</div>
+  <div class="links">
+    <a href="index.html">Ana</a><a href="adimlar.html">18 Adım</a><a href="algoritma.html">Algoritma</a><a href="dosyalar.html">Dosyalar</a>
+  </div>
+</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>

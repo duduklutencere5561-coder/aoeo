@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adım 14 & 15 — CRAFT & Taşıma Sistemi — IE 371 Projesi</title>
+<meta name="description" content="IE 371 — CRAFT algoritması ile yerleşim optimizasyonu ve Malzeme Taşıma Sistemlerinin (AGV, Konveyör) seçimi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* CRAFT İterasyon Grafiği Stilleri */
+  .chart-container {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    margin: 2rem 0;
+  }
+  .chart-bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 15px;
+  }
+  .chart-label { width: 100px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-dim); }
+  .chart-bar-wrapper { flex-grow: 1; background: var(--bg-elev); height: 24px; border-radius: 4px; overflow: hidden; position: relative; }
+  .chart-bar { height: 100%; background: var(--accent); transition: width 1s ease-in-out; }
+  .chart-value { position: absolute; right: 10px; top: 2px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: bold; }
+  
+  .bar-start { background: var(--danger); width: 100%; }
+  .bar-end { background: var(--good); width: 76%; } /* 18.205 / 23.931 */
+</style>
+</head>
+<body>
+
+<nav class="main-nav">
+  <a href="index.html" class="nav-logo">IE 371 · DÜDÜKLÜ TENCERE</a>
+  <div class="nav-links">
+    <a href="index.html">Ana</a>
+    <a href="urun.html">Ürün</a>
+    <a href="adimlar.html" class="active">18 Adım</a>
+    <a href="algoritma.html">Algoritma</a>
+    <a href="karsilastirma.html">Karşılaştırma</a>
+    <a href="sonuclar.html">Sonuçlar</a>
+    <a href="sss.html">SSS</a>
+    <a href="dosyalar.html">Dosyalar</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Ana</a><span>/</span><a href="adimlar.html">18 Adım</a><span>/</span>Adım 14 & 15</div>
+    <div class="page-step-tag">ADIM 14 & 15</div>
+    <h1 class="page-title">CRAFT Optimizasyonu ve <em>Taşıma Sistemleri.</em></h1>
+    <p class="page-subtitle">Seçilen U-Tipi yerleşimin iteratif algoritmalarla maliyetinin düşürülmesi ve fabrika içi malzeme akışı için Konveyör, AGV ve Forklift atamaları.</p>
+  </div>
+</header>
+
+<main>
+  <div class="content-grid">
+    <aside class="sidebar">
+      <div class="sidebar-title">Sayfada</div>
+      <nav>
+        <a href="#craft">CRAFT İterasyonları</a>
+        <a href="#maliyet">Maliyet İyileşmesi</a>
+        <a href="#tasima">Taşıma Sistemleri</a>
+        <a href="#yatirim">Toplam Tesis Yatırımı</a>
+      </nav>
+    </aside>
+
+    <div class="prose">
+      <h2 id="craft">1. CRAFT Algoritması ile Yerleşim İyileştirme</h2>
+      <p class="lead">Python üzerinde kodlanan CRAFT (Computerized Relative Allocation of Facilities Technique) algoritması ile başlangıç yerleşimimizdeki departmanların yerleri, toplam taşıma maliyetini minimize edecek şekilde karşılıklı takas edilmiştir.</p>
+      
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>İterasyon</th><th>Yapılan Takas</th><th>Yeni Maliyet</th><th>Tasarruf Oranı</th></tr></thead>
+          <tbody>
+            <tr><td>0 (Başlangıç)</td><td class="mono">Adım 13 Seçimi (U-Tipi)</td><td class="num">23.931 ton·m</td><td>-</td></tr>
+            <tr><td>İterasyon 1</td><td class="mono">D02 (Rampa) ⟷ D03 (Ara Stok)</td><td class="num">21.147 ton·m</td><td class="num good">%11.6</td></tr>
+            <tr><td>İterasyon 2</td><td class="mono">D01 (Hammadde) ⟷ H02 (Taban)</td><td class="num">20.056 ton·m</td><td class="num good">%5.2</td></tr>
+            <tr><td>İterasyon 3</td><td class="mono">D02 (Rampa) ⟷ H03 (Montaj)</td><td class="num">18.267 ton·m</td><td class="num good">%8.9</td></tr>
+            <tr><td>İterasyon 4-6</td><td class="mono">Küçük Rötuşlar (S01, K01 vb.)</td><td class="num">18.205 ton·m</td><td class="num">%0.3</td></tr>
+            <tr class="total"><td><strong>FİNAL</strong></td><td><strong>Algoritma Yakınsadı</strong></td><td class="num good"><strong>18.205 ton·m</strong></td><td class="num good"><strong>Toplam: %23.9</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="maliyet">2. Maliyet İyileşme Grafiği</h2>
+      <p>Algoritmanın L-Tipi başlangıç planından CRAFT Final planına kadar sağladığı devasa iyileşme aşağıdaki gibidir:</p>
+
+      <div class="chart-container">
+        <div class="chart-bar-row">
+          <div class="chart-label">L-Tipi (Adım 12)</div>
+          <div class="chart-bar-wrapper"><div class="chart-bar" style="width: 100%; background: #ff4757;"></div><div class="chart-value">32.128</div></div>
+        </div>
+        <div class="chart-bar-row">
+          <div class="chart-label">U-Tipi (Adım 13)</div>
+          <div class="chart-bar-wrapper"><div class="chart-bar" style="width: 74%; background: #ffb627;"></div><div class="chart-value">23.931</div></div>
+        </div>
+        <div class="chart-bar-row">
+          <div class="chart-label">CRAFT (Final)</div>
+          <div class="chart-bar-wrapper"><div class="chart-bar" style="width: 56%; background: #2ecc71;"></div><div class="chart-value">18.205</div></div>
+        </div>
+      </div>
+
+      <div class="callout good" data-label="SONUÇ">
+        <p>CRAFT optimizasyonu, forklift ve taşıma sürelerinde başlangıca göre <strong>%43.4 oranında devasa bir iyileşme</strong> sağlamıştır. Bu, operatör yorgunluğunu azaltır ve yıllık 12.710$ işletme maliyeti tasarrufu yaratır.</p>
+      </div>
+
+      <h2 id="tasima">3. Malzeme Taşıma Sistemi Seçimi</h2>
+      <p>Optimize edilen rotalardaki frekans (sefer/saat) ve taşınan yükün fiziksel özelliklerine göre 16 farklı akış hattı için taşıma ekipmanları belirlenmiştir.</p>
+
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Ekipman Tipi</th><th>Kullanım Alanı (Rotası)</th><th>Akış (ton/yıl)</th><th>Yatırım ($)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Rulolu Konveyör</strong></td><td>Hücre 1 → 2 (Sürekli akış)<br>Son Montaj → Mamul Deposu (50 sefer/saat)</td><td class="num">320</td><td class="num">$280.000</td></tr>
+            <tr><td><strong>Forklift (2 Adet)</strong></td><td>Rampa ⟷ Depolar Arası (Ağır rulo sac ve paletler)</td><td class="num">553</td><td class="num">$50.000</td></tr>
+            <tr><td><strong>AGV (Otonom)</strong></td><td>Ara Stok ⟷ Üretim Hücreleri (Esnek ve temiz taşıma)</td><td class="num">94</td><td class="num">$70.000</td></tr>
+            <tr><td><strong>Manuel / Çöp</strong></td><td>Hücre içi düşük frekanslı akışlar ve atık tahliyesi</td><td class="num">52</td><td class="num">$6.000</td></tr>
+            <tr class="total"><td colspan="2"><strong>TOPLAM TAŞIMA SİSTEMİ YATIRIMI</strong></td><td class="num"><strong>1.019</strong></td><td class="num"><strong>$406.000</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="yatirim">4. Toplam Tesis Sabit Yatırımı (CAPEX) Özeti</h2>
+      <p>Adım 15 itibarıyla üretim için gereken tüm fiziksel yatırımlar (CAPEX) tamamlanmıştır. Projenin başlangıcında hedeflenen <em>"Toplam yatırım &lt; $3.5M"</em> hedefi (sadece makine ve donanım için) başarıyla tutturulmuştur.</p>
+      
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="label">Makineler (Adım 6)</div>
+          <div class="value">$2.90M</div>
+          <div class="desc">96 adet üretim ve test makinesi</div>
+        </div>
+        <div class="metric-card">
+          <div class="label">Taşıma (Adım 15)</div>
+          <div class="value">$0.40M</div>
+          <div class="desc">Konveyör, AGV ve Forkliftler</div>
+        </div>
+        <div class="metric-card">
+          <div class="label">Altyapı (Adım 11)</div>
+          <div class="value">$1.63M</div>
+          <div class="desc">2.330 m² bina inşaat/kiralama</div>
+        </div>
+      </div>
+
+      <div class="step-pagination">
+        <a href="adim12.html"><span class="dir">← ÖNCEKİ ADIM 12 & 13</span><span class="title">Blok Yerleşim Planı</span></a>
+        <a href="adim16.html" class="next"><span class="dir">SONRAKİ ADIM 16 →</span><span class="title">Sistem Simülasyonu</span></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="main-footer">
+  <div class="brand">IE 371 · Düdüklü Tencere Üretim Tesisi Projesi</div>
+  <div class="meta">ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ · ENDÜSTRİ MÜHENDİSLİĞİ · 2026</div>
+  <div class="links">
+    <a href="index.html">Ana</a><a href="adimlar.html">18 Adım</a><a href="algoritma.html">Algoritma</a><a href="dosyalar.html">Dosyalar</a>
+  </div>
+</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>

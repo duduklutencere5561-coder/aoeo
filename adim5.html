@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adım 5 — Öncelik Diyagramları — IE 371 Projesi</title>
+<meta name="description" content="IE 371 — CPM hesabı, kritik yol 73 sn, 12 görev slack analizi">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="main-nav">
+  <a href="index.html" class="nav-logo">IE 371 · DÜDÜKLÜ TENCERE</a>
+  <div class="nav-links">
+    <a href="index.html">Ana</a>
+    <a href="urun.html">Ürün</a>
+    <a href="adimlar.html" class="active">18 Adım</a>
+    <a href="algoritma.html">Algoritma</a>
+    <a href="karsilastirma.html">Karşılaştırma</a>
+    <a href="sonuclar.html">Sonuçlar</a>
+    <a href="sss.html">SSS</a>
+    <a href="dosyalar.html">Dosyalar</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Ana</a><span>/</span><a href="adimlar.html">18 Adım</a><span>/</span>Adım 5</div>
+    <div class="page-step-tag">ADIM 05</div>
+    <h1 class="page-title">Öncelik diyagramları ve <em>kritik yol.</em></h1>
+    <p class="page-subtitle">Son montaj hattının 12 görev için öncelik ilişkileri, ES/EF/LS/LF hesabı, slack analizi, kritik yol tespit.</p>
+  </div>
+</header><main><div class="content-grid"><aside class="sidebar"><div class="sidebar-title">Sayfada</div><nav><a href="#gorev">12 Görev Listesi</a><a href="#oncelik">Öncelik İlişkileri</a><a href="#cpm">CPM Hesabı</a><a href="#slack">Slack Analizi</a><a href="#kritik">Kritik Yol</a></nav></aside><div class="prose">
+
+<h2 id="gorev">1. Son Montaj Hattı — 12 Görev</h2>
+<p class="lead">Adım 4'te 91 toplam operasyon belirledik. Son montaj hattındaki <strong>12 kritik görev</strong> öncelik diyagramı ile incelenir. Toplam görev süresi <code class="inline">∑t = 92 saniye</code>.</p>
+
+<div class="table-wrap">
+<table class="data">
+<thead><tr><th>Kod</th><th>Görev</th><th>Süre (sn)</th><th>Önceki Görevler</th><th>Açıklama</th></tr></thead>
+<tbody>
+<tr><td class="num">M1</td><td>Gövde alma + temizleme</td><td class="num">8</td><td>—</td><td>Ara stoktan al, son kontrol</td></tr>
+<tr><td class="num">M2</td><td>Yan kulp 1 perçinleme</td><td class="num">6</td><td>M1</td><td>Sağ yan kulp, 3 perçin</td></tr>
+<tr><td class="num">M3</td><td>Yan kulp 2 perçinleme</td><td class="num">8</td><td>M1</td><td>Sol yan kulp, 3 perçin</td></tr>
+<tr><td class="num">M4</td><td>Kapak alma + O-ring takma</td><td class="num">10</td><td>M2</td><td>Silikon O-ring kapağa yerleştir</td></tr>
+<tr><td class="num">M5</td><td>Üst kulp montajı</td><td class="num">8</td><td>M4</td><td>Bakalit kulp + 4 vida</td></tr>
+<tr><td class="num">M6</td><td>Basınç regülatörü vidalama</td><td class="num">10</td><td>M5</td><td>Regülatör gövdesi kapağa</td></tr>
+<tr><td class="num">M7</td><td>Sigorta valfi + buhar borusu</td><td class="num">5</td><td>M6</td><td>Yardımcı parçaları yerleştir</td></tr>
+<tr><td class="num">M8</td><td>Kapak-gövde birleştirme</td><td class="num">6</td><td>M3, M7, K1</td><td>Bayonet kilit mekanizması</td></tr>
+<tr><td class="num">K1</td><td>Süzgeç + alev kalkanı yerleştirme</td><td class="num">3</td><td>M3</td><td>İç parçalar gövdeye</td></tr>
+<tr><td class="num">K2</td><td>Hidrostatik test (2.5 bar)</td><td class="num">12</td><td>M8</td><td>ZwickRoell standı</td></tr>
+<tr><td class="num">K3</td><td>Lazer marker (model + seri no)</td><td class="num">4</td><td>K2</td><td>Kapak iç yüzeyine</td></tr>
+<tr><td class="num">M9</td><td>Karton kutu + ambalaj</td><td class="num">12</td><td>K3</td><td>Köpük + kılavuz + kapatma</td></tr>
+<tr class="total"><td colspan="2"><strong>TOPLAM GÖREV SÜRESİ</strong></td><td class="num"><strong>∑t = 92 sn</strong></td><td>—</td><td>12 görev</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="oncelik">2. Öncelik Diyagramı (AON Notation)</h2>
+
+<div class="code-block" data-lang="GRAPH">
+M1 ─┬─→ M2 ──→ M4 ──→ M5 ──→ M6 ──→ M7 ──┐
+    │                                      │
+    └─→ M3 ──→ K1 ───────────────────────→ │
+                                           ↓
+                                          M8 ──→ K2 ──→ K3 ──→ M9
+</div>
+
+<p>Diyagramda iki paralel kol var:</p>
+<ul>
+<li><strong>Üst kol:</strong> M1 → M2 → M4 → M5 → M6 → M7 → (M8)</li>
+<li><strong>Alt kol:</strong> M1 → M3 → K1 → (M8)</li>
+<li>İki kol <strong>M8'de birleşir</strong> (kapak-gövde birleştirme)</li>
+<li>Sonra tek sıralı: M8 → K2 → K3 → M9</li>
+</ul>
+
+<h2 id="cpm">3. CPM (Critical Path Method) Hesabı</h2>
+
+<div class="formula">
+ES = max(EF<sub>öncekiler</sub>)  &nbsp;&nbsp;|&nbsp;&nbsp;  EF = ES + t<br>
+LF = min(LS<sub>sonrakiler</sub>)  &nbsp;&nbsp;|&nbsp;&nbsp;  LS = LF − t<br>
+Slack = LS − ES = LF − EF<br>
+<span class="desc">Kritik yol: Slack = 0 olan görevler</span>
+</div>
+
+<div class="table-wrap">
+<table class="data">
+<thead><tr><th>Görev</th><th>Süre</th><th>ES</th><th>EF</th><th>LS</th><th>LF</th><th>Slack</th><th>Kritik?</th></tr></thead>
+<tbody>
+<tr><td><strong>M1</strong></td><td class="num">8</td><td class="num">0</td><td class="num">8</td><td class="num">20</td><td class="num">28</td><td class="num">20</td><td>✗</td></tr>
+<tr><td><strong>M2</strong></td><td class="num">6</td><td class="num">8</td><td class="num">14</td><td class="num">28</td><td class="num">34</td><td class="num">20</td><td>✗</td></tr>
+<tr><td><strong>M3</strong></td><td class="num">8</td><td class="num">8</td><td class="num">16</td><td class="num">28</td><td class="num">36</td><td class="num">20</td><td>✗</td></tr>
+<tr><td><strong>M4</strong></td><td class="num">10</td><td class="num">14</td><td class="num">24</td><td class="num">34</td><td class="num">44</td><td class="num">20</td><td>✗</td></tr>
+<tr><td><strong>M5</strong></td><td class="num">8</td><td class="num">24</td><td class="num">32</td><td class="num">44</td><td class="num">52</td><td class="num">20</td><td>✗</td></tr>
+<tr><td><strong>M6</strong></td><td class="num">10</td><td class="num">32</td><td class="num">42</td><td class="num">52</td><td class="num">62</td><td class="num">20</td><td>✗</td></tr>
+<tr><td><strong>M7</strong></td><td class="num">5</td><td class="num">42</td><td class="num">47</td><td class="num">62</td><td class="num">67</td><td class="num">20</td><td>✗</td></tr>
+<tr><td><strong>K1</strong></td><td class="num">3</td><td class="num">16</td><td class="num">19</td><td class="num">36</td><td class="num">39</td><td class="num">20</td><td>✗</td></tr>
+<tr class="total"><td><strong>M8</strong></td><td class="num">6</td><td class="num">47</td><td class="num">53</td><td class="num">47</td><td class="num">53</td><td class="num good">0</td><td class="good">✓</td></tr>
+<tr class="total"><td><strong>K2</strong></td><td class="num">12</td><td class="num">53</td><td class="num">65</td><td class="num">53</td><td class="num">65</td><td class="num good">0</td><td class="good">✓</td></tr>
+<tr class="total"><td><strong>K3</strong></td><td class="num">4</td><td class="num">65</td><td class="num">69</td><td class="num">65</td><td class="num">69</td><td class="num good">0</td><td class="good">✓</td></tr>
+<tr class="total"><td><strong>M9</strong></td><td class="num">12</td><td class="num">69</td><td class="num">81</td><td class="num">69</td><td class="num">81</td><td class="num good">0</td><td class="good">✓</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="slack">4. Slack (Bolluk) Analizi</h2>
+
+<p>İki paralel kol arasındaki süre farkı:</p>
+<ul>
+<li><strong>Üst kol süresi:</strong> M2+M4+M5+M6+M7 = 6+10+8+10+5 = <code class="inline">39 sn</code></li>
+<li><strong>Alt kol süresi:</strong> M3+K1 = 8+3 = <code class="inline">11 sn</code></li>
+<li><strong>Fark:</strong> Alt kol 28 sn daha kısa → bu kol <strong>28 sn slack</strong> taşır</li>
+<li>Tüm kritik olmayan görevlerin slack'i <strong>20 sn</strong> (üst kolun M2'den önceki kısmı)</li>
+</ul>
+
+<h2 id="kritik">5. Kritik Yol</h2>
+
+<div class="callout danger" data-label="KRİTİK YOL">
+<p style="font-family:'JetBrains Mono', monospace; font-size:1rem; text-align:center; margin-bottom:0.5rem;">
+<strong>M2 → M4 → M5 → M6 → M7 → M8 → K2 → K3 → M9</strong>
+</p>
+<p style="text-align:center;">Süresi: <strong class="text-accent" style="font-size:1.3rem">73 saniye</strong></p>
+</div>
+
+<p>Yorum:</p>
+<ul>
+<li>Kritik yol uzunluğu <strong>73 sn</strong>, takt süremiz <strong>63 sn</strong>. Bu nedenle tek operatör tek istasyonda yapamaz — hat dengeleme gerekli.</li>
+<li>Teorik minimum istasyon sayısı: <code class="inline">⌈92/63⌉ = 2 istasyon</code></li>
+<li>Ancak kritik yol 73 &gt; takt 63 olduğu için pratikte <strong>3 istasyon</strong> gerekir.</li>
+<li>Bu Adım 8 hat dengelemenin temel girdisidir.</li>
+</ul>
+
+<div class="step-pagination"><a href="adim4.html"><span class="dir">← ÖNCEKİ ADIM 4</span><span class="title">Operasyon Süreç</span></a><a href="adim6.html" class="next"><span class="dir">SONRAKİ ADIM 6 →</span><span class="title">Makine Sayısı</span></a></div></div></div></main>
+
+<footer class="main-footer">
+  <div class="brand">IE 371 · Düdüklü Tencere Üretim Tesisi Projesi</div>
+  <div class="meta">ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ · ENDÜSTRİ MÜHENDİSLİĞİ · 2026</div>
+  <div class="links">
+    <a href="index.html">Ana</a><a href="adimlar.html">18 Adım</a><a href="algoritma.html">Algoritma</a><a href="dosyalar.html">Dosyalar</a>
+  </div>
+  <div class="meta" style="margin-top:1.5rem;color:var(--accent)">14 RAPOR · 3 EXCEL · 8 PYTHON ALGORİTMA · 860 FORMÜL</div>
+</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>

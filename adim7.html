@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adım 6 & 7 — Makine ve Operatör — IE 371 Projesi</title>
+<meta name="description" content="IE 371 — 91 operasyon için 96 makine ve 25 operatör hesabı, yatırım maliyetleri.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="main-nav">
+  <a href="index.html" class="nav-logo">IE 371 · DÜDÜKLÜ TENCERE</a>
+  <div class="nav-links">
+    <a href="index.html">Ana</a>
+    <a href="urun.html">Ürün</a>
+    <a href="adimlar.html" class="active">18 Adım</a>
+    <a href="algoritma.html">Algoritma</a>
+    <a href="karsilastirma.html">Karşılaştırma</a>
+    <a href="sonuclar.html">Sonuçlar</a>
+    <a href="sss.html">SSS</a>
+    <a href="dosyalar.html">Dosyalar</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Ana</a><span>/</span><a href="adimlar.html">18 Adım</a><span>/</span>Adım 6 & 7</div>
+    <div class="page-step-tag">ADIM 06 & 07</div>
+    <h1 class="page-title">Makine ve Operatör Sayısı <em>Hesaplaması.</em></h1>
+    <p class="page-subtitle">91 farklı operasyon için gerekli makine parkuru, darboğaz analizi, operatör atamaları ve toplam 3.3 milyon dolarlık ilk yıl yatırımının analizi.</p>
+  </div>
+</header>
+
+<main>
+  <div class="content-grid">
+    <aside class="sidebar">
+      <div class="sidebar-title">Sayfada</div>
+      <nav>
+        <a href="#yontem">Yöntem & Formül</a>
+        <a href="#parametreler">Parametreler</a>
+        <a href="#makineler">Makine Sayıları</a>
+        <a href="#darbogaz">Darboğaz Analizi</a>
+        <a href="#operator">Operatör Atamaları</a>
+        <a href="#yatirim">Yatırım Özeti</a>
+      </nav>
+    </aside>
+
+    <div class="prose">
+      <h2 id="yontem">1. Yöntem ve Formül</h2>
+      <p class="lead">Her operasyon için gerekli makine sayısı, hedef talep ve etkin üretim süreleri dikkate alınarak standart kapasite formülüyle hesaplanmıştır.</p>
+      
+      <div class="formula">
+        N = (T × Q_etkin) / (E × H × (1 − f))<br>
+        <span class="desc">Gerekli Makine Sayısı (Teorik)</span>
+      </div>
+      
+      <ul>
+        <li><strong>N:</strong> Gerekli makine sayısı (tavana yuvarlanır)</li>
+        <li><strong>T:</strong> Standart işlem süresi (saniye/parça)</li>
+        <li><strong>Q_etkin:</strong> Yıllık talep × adet/tencere</li>
+        <li><strong>E:</strong> Makine verim katsayısı (%80-95 arası)</li>
+        <li><strong>H:</strong> Yıllık etkin çalışma süresi (saniye)</li>
+        <li><strong>f:</strong> Operasyon fire oranı (%0 ile %8 arası)</li>
+      </ul>
+
+      <h2 id="parametreler">2. Global Parametreler ve Takt Süresi</h2>
+      
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Parametre</th><th>Sembol</th><th>Değer</th><th>Birim</th><th>Kaynak</th></tr></thead>
+          <tbody>
+            <tr><td>Yıllık talep — Model A</td><td class="mono">Q_A</td><td class="num">60.000</td><td>adet/yıl</td><td>Adım 1</td></tr>
+            <tr><td>Yıllık talep — Model B</td><td class="mono">Q_B</td><td class="num">40.000</td><td>adet/yıl</td><td>Adım 1</td></tr>
+            <tr class="total"><td><strong>Toplam yıllık talep</strong></td><td class="mono">Q</td><td class="num">100.000</td><td>adet/yıl</td><td>Q_A + Q_B</td></tr>
+            <tr><td>İş günü</td><td class="mono">D</td><td class="num">250</td><td>gün/yıl</td><td>5×50 hafta</td></tr>
+            <tr><td>Vardiya sayısı</td><td class="mono">v</td><td class="num">1</td><td>vardiya/gün</td><td>Adım 1 kararı</td></tr>
+            <tr><td>Etkin vardiya süresi</td><td class="mono">tₑ</td><td class="num">420</td><td>dk/vardiya</td><td>480 − 60 (mola)</td></tr>
+            <tr><td>Yıllık etkin çalışma (sn)</td><td class="mono">H_sn</td><td class="num">6.300.000</td><td>sn/yıl</td><td>H×60</td></tr>
+            <tr class="total"><td><strong>Takt süresi</strong></td><td class="mono">TT</td><td class="num">63</td><td>sn/tencere</td><td>H_sn / Q</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout cool" data-label="BİLGİ">
+        <p>Her <strong>63 saniyede bir</strong> tencerenin hattan çıkması gerekmektedir. Bu rakam Adım 1'deki 57 sn'lik ön tahminin etkin süre düzeltmesiyle güncellenmiş halidir.</p>
+      </div>
+
+      <h2 id="makineler">3. Bölüm Bazında Makine Sayısı Özeti</h2>
+      <p>Toplam 91 operasyon için makine sayıları hesaplanmıştır. Aynı makinenin birden fazla parça tarafından paylaşılması durumunda makine sadece bir kez sayılmıştır.</p>
+
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Bölüm</th><th>Op. Sayısı</th><th>Makine Sayısı</th><th>Yatırım ($)</th><th>Açıklama</th></tr></thead>
+          <tbody>
+            <tr><td>1. Ana gövde</td><td class="num">10</td><td class="num">10</td><td class="num">$388.000</td><td>10 farklı işlem, ortak makineler</td></tr>
+            <tr><td>2. Tencere kapağı</td><td class="num">8</td><td class="num">3</td><td class="num">$145.000</td><td>Gövdeyle paylaşılan makineler düşülmüş</td></tr>
+            <tr><td>3. Sandviç taban</td><td class="num">10</td><td class="num">12</td><td class="num">$498.000</td><td>Impact bonding presi $180k</td></tr>
+            <tr><td>4. Buhar tahliye borusu</td><td class="num">7</td><td class="num">3</td><td class="num">$133.000</td><td>CNC paylaşımı</td></tr>
+            <tr><td>9. Bakalit kulplar</td><td class="num">6</td><td class="num">4</td><td class="num">$125.000</td><td>Kürlenme darboğazı 4 makine</td></tr>
+            <tr><td>10. Basınç regülatörü</td><td class="num">8</td><td class="num">5</td><td class="num">$206.000</td><td>Karmaşık alt montaj</td></tr>
+            <tr><td>11. Polisaj hattı</td><td class="num">9</td><td class="num">9</td><td class="num">$480.000</td><td>Otomatik robotik hat</td></tr>
+            <tr><td>13. Son montaj</td><td class="num">12</td><td class="num">12</td><td class="num">$416.000</td><td>9 istasyon + 3 test</td></tr>
+            <tr><td>Diğer (Küçük Pres, Yay vb.)</td><td class="num">21</td><td class="num">38</td><td class="num">$514.000</td><td>Paylaşılan ve ortak ekipmanlar</td></tr>
+            <tr class="total"><td><strong>TOPLAM</strong></td><td class="num"><strong>91</strong></td><td class="num"><strong>96</strong></td><td class="num"><strong>$2.905.000</strong></td><td>Toplam makine yatırımı</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="darbogaz">4. Darboğaz Analizi</h2>
+      
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="label">Bakalit Kürlenme (Op 9.3)</div>
+          <div class="value warn">4<span class="unit">Makine</span></div>
+          <div class="desc">60 sn çevrim. <strong>%89 yük</strong>. Talep artışında kalıp çoğaltılmalı.</div>
+        </div>
+        <div class="metric-card">
+          <div class="label">Ayna Parlatma (Op 11.4)</div>
+          <div class="value cool">2<span class="unit">Makine</span></div>
+          <div class="desc">120 sn çevrim. <strong>%58 yük</strong>. Paralel 2 robotik hat ile çözüldü.</div>
+        </div>
+        <div class="metric-card">
+          <div class="label">Düdük Kabuğu (Op 10.4)</div>
+          <div class="value cool">2<span class="unit">Makine</span></div>
+          <div class="desc">Bakalit enjeksiyon kalıp değişimiyle <strong>%60 yükle</strong> çalışır.</div>
+        </div>
+      </div>
+
+      <h2 id="operator">5. Operatör Sayısı ve Atamaları</h2>
+      <p>Tam otomatik makineler için ortak operatör atanmış (1 operatör → 2-4 benzer makine), manuel istasyonlar için 1.5-2.0 operatör/istasyon standardı kullanılmıştır.</p>
+
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>İş İstasyonu</th><th>Makine</th><th>Op/Mak</th><th>Operatör</th><th>Otomasyon Tipi</th></tr></thead>
+          <tbody>
+            <tr><td>Rulo açıcı + blanking</td><td class="num">2</td><td class="num">0.5</td><td class="num">1</td><td>Yüksek otomasyon, ortak</td></tr>
+            <tr><td>Derin çekme presleri</td><td class="num">2</td><td class="num">1.0</td><td class="num">2</td><td>Yarı otomatik, yükleme</td></tr>
+            <tr><td>CNC kayar otomat</td><td class="num">2</td><td class="num">0.33</td><td class="num">0.66</td><td>1 operatör 3 CNC izler</td></tr>
+            <tr><td>Bakalit enjeksiyon</td><td class="num">4</td><td class="num">0.33</td><td class="num">1.33</td><td>1 operatör 4 enjeksiyon</td></tr>
+            <tr><td>Son montaj (Gövde kolu)</td><td class="num">1</td><td class="num">1.5</td><td class="num">1.5</td><td>Manuel montaj</td></tr>
+            <tr><td>Son montaj (Kapak kolu)</td><td class="num">1</td><td class="num">2.0</td><td class="num">2</td><td>Manuel montaj</td></tr>
+            <tr><td>Hammadde + Sevkiyat</td><td class="num">1</td><td class="num">2.0</td><td class="num">2</td><td>2 forklift sürücüsü</td></tr>
+            <tr><td>Bakım ekibi</td><td class="num">1</td><td class="num">2.0</td><td class="num">2</td><td>2 teknisyen + 1 elektrikçi</td></tr>
+            <tr class="total"><td colspan="3"><strong>TOPLAM OPERATÖR (Tek Vardiya)</strong></td><td class="num"><strong>25</strong></td><td>Maaş + SGK dahildir</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="yatirim">6. İlk Yıl Yatırım Özeti</h2>
+      
+      <div class="callout good" data-label="FİNANSAL ÖZET">
+        <p>Birim ürün başına makine amortismanı (5 yıl üzerinden) <strong>$5.81</strong> ve işgücü maliyeti <strong>$4.00</strong>'dır. Toplam dolaylı maliyet tencere başına <strong>$9.81</strong> seviyesinde tutulmuştur.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Kalem</th><th>Tutar</th><th>Açıklama</th></tr></thead>
+          <tbody>
+            <tr><td>Toplam makine yatırımı</td><td class="num">$2.905.000</td><td>96 makine için tek seferlik yatırım</td></tr>
+            <tr><td>Yıllık işgücü maliyeti</td><td class="num">$400.254</td><td>25 operatör × $880/ay × 13 maaş × 1.4 SGK</td></tr>
+            <tr class="total"><td><strong>TOPLAM İLK YIL</strong></td><td class="num"><strong>$3.305.254</strong></td><td>Makine + 1 yıl işgücü operasyon maliyeti</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="step-pagination">
+        <a href="adim5.html"><span class="dir">← ÖNCEKİ ADIM 5</span><span class="title">Öncelik Diyagramları</span></a>
+        <a href="adim8.html" class="next"><span class="dir">SONRAKİ ADIM 8 →</span><span class="title">Hat Dengeleme</span></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="main-footer">
+  <div class="brand">IE 371 · Düdüklü Tencere Üretim Tesisi Projesi</div>
+  <div class="meta">ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ · ENDÜSTRİ MÜHENDİSLİĞİ · 2026</div>
+  <div class="links">
+    <a href="index.html">Ana</a><a href="adimlar.html">18 Adım</a><a href="algoritma.html">Algoritma</a><a href="dosyalar.html">Dosyalar</a>
+  </div>
+</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>

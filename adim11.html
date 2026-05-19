@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adım 11 — İlişki Diyagramı — IE 371 Projesi</title>
+<meta name="description" content="IE 371 — Systematic Layout Planning (SLP) yaklaşımı ile tesis departmanları arası REL Chart (İlişki Diyagramı) analizi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* REL Chart Özel Stilleri */
+  .rel-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-family: 'Inter', sans-serif; font-size: 0.95rem; }
+  .rel-table th, .rel-table td { border: 1px solid var(--line); padding: 0.75rem; text-align: center; }
+  .rel-table th.left-align { text-align: left; background: var(--bg-elev); color: var(--text); }
+  .rel-table th { background: var(--bg-elev); font-weight: 600; }
+  .rel-table td { background: var(--bg-card); }
+  
+  /* İlişki Renk Kodları */
+  .rel-A { background-color: rgba(255, 71, 87, 0.2) !important; color: #ff4757; font-weight: bold; } /* Kırmızı */
+  .rel-E { background-color: rgba(255, 182, 39, 0.2) !important; color: #ffb627; font-weight: bold; } /* Turuncu */
+  .rel-I { background-color: rgba(46, 204, 113, 0.2) !important; color: #2ecc71; font-weight: bold; } /* Yeşil */
+  .rel-O { background-color: rgba(0, 217, 192, 0.1) !important; color: var(--text-dim); } /* Mavi/Gri */
+  .rel-U { color: var(--text-faint); } /* Renksiz */
+  .rel-X { background-color: rgba(255, 255, 255, 0.1) !important; color: #fff; font-weight: bold; text-decoration: underline; } /* X: İstenmeyen */
+  .rel-empty { background-color: var(--bg) !important; border: none !important; }
+</style>
+</head>
+<body>
+
+<nav class="main-nav">
+  <a href="index.html" class="nav-logo">IE 371 · DÜDÜKLÜ TENCERE</a>
+  <div class="nav-links">
+    <a href="index.html">Ana</a>
+    <a href="urun.html">Ürün</a>
+    <a href="adimlar.html" class="active">18 Adım</a>
+    <a href="algoritma.html">Algoritma</a>
+    <a href="karsilastirma.html">Karşılaştırma</a>
+    <a href="sonuclar.html">Sonuçlar</a>
+    <a href="sss.html">SSS</a>
+    <a href="dosyalar.html">Dosyalar</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Ana</a><span>/</span><a href="adimlar.html">18 Adım</a><span>/</span>Adım 11</div>
+    <div class="page-step-tag">ADIM 11</div>
+    <h1 class="page-title">Bölümler Arası <em>İlişki Diyagramı.</em></h1>
+    <p class="page-subtitle">Muther'ın Systematic Layout Planning (SLP) metodu kullanılarak tesis içi malzeme akışı, personel hareketliliği ve çevresel faktörlere dayalı departman yakınlık derecelerinin (REL Chart) oluşturulması.</p>
+  </div>
+</header>
+
+<main>
+  <div class="content-grid">
+    <aside class="sidebar">
+      <div class="sidebar-title">Sayfada</div>
+      <nav>
+        <a href="#tanimlar">İlişki Kodları (AEIOUX)</a>
+        <a href="#nedenler">Yakınlık Nedenleri</a>
+        <a href="#rel-chart">REL Matrisi</a>
+        <a href="#sonuc">Kritik Bulgular</a>
+      </nav>
+    </aside>
+
+    <div class="prose">
+      <h2 id="tanimlar">1. İlişki Dereceleri (AEIOUX)</h2>
+      <p class="lead">Tesis içindeki herhangi iki bölümün birbirine fiziksel olarak ne kadar yakın veya uzak olması gerektiğini uluslararası standartlardaki harf kodlarıyla belirliyoruz.</p>
+      
+      <div class="metrics-row">
+        <div class="metric-card" style="border-top: 4px solid #ff4757">
+          <div class="label">Mutlak Gerekli</div>
+          <div class="value" style="color: #ff4757">A</div>
+          <div class="desc">Yan yana olmaları şarttır.</div>
+        </div>
+        <div class="metric-card" style="border-top: 4px solid #ffb627">
+          <div class="label">Çok Önemli</div>
+          <div class="value" style="color: #ffb627">E</div>
+          <div class="desc">Mümkünse bitişik olmalılar.</div>
+        </div>
+        <div class="metric-card" style="border-top: 4px solid #2ecc71">
+          <div class="label">Önemli</div>
+          <div class="value" style="color: #2ecc71">I</div>
+          <div class="desc">Yakın mesafede bulunmalılar.</div>
+        </div>
+        <div class="metric-card" style="border-top: 4px solid #fff">
+          <div class="label">İstenmeyen</div>
+          <div class="value" style="color: #fff">X</div>
+          <div class="desc">Kesinlikle uzak olmalılar!</div>
+        </div>
+      </div>
+
+      <h2 id="nedenler">2. Yakınlık / Uzaklık Neden Kodları</h2>
+      <p>Bir ilişkiye harf atandığında, bunun mühendislik açısından mantıklı bir gerekçesi olmalıdır. Matriste yer alan numaralar aşağıdaki nedenleri temsil eder:</p>
+      <ul>
+        <li><strong>1:</strong> Yüksek hacimli ve ağır malzeme akışı (Sac ruloları, metal paletler)</li>
+        <li><strong>2:</strong> Sürekli personel hareketi / Ortak personel kullanımı</li>
+        <li><strong>3:</strong> Ortak ekipman veya tesisat kullanımı (Havalandırma, kompresör)</li>
+        <li><strong>4:</strong> Şiddetli gürültü ve titreşim yayılımı (Ağır pres makineleri)</li>
+        <li><strong>5:</strong> Koku, toz ve kimyasal sızıntı riski (Polisaj tozu, bakalit kokusu)</li>
+        <li><strong>6:</strong> Süreç sırası (Üretim akışının doğası gereği)</li>
+      </ul>
+
+      <h2 id="rel-chart">3. Departmanlar Arası İlişki Matrisi (REL Chart)</h2>
+      <p>Aşağıdaki matris, tesisimizde yer alan 7 ana bölümün birbiriyle olan mekansal ilişkisini göstermektedir (Harf: Yakınlık Derecesi / Rakam: Neden Kodu).</p>
+
+      <div class="table-wrap" style="overflow-x: auto;">
+        <table class="rel-table">
+          <thead>
+            <tr>
+              <th class="left-align">Departman</th>
+              <th>1. Hammadde</th>
+              <th>2. Hücre 1 (Pres)</th>
+              <th>3. Hücre 2 (Talaşlı)</th>
+              <th>4. Hücre 3 (Montaj)</th>
+              <th>5. Mamul Deposu</th>
+              <th>6. Takımhane</th>
+              <th>7. İdari Ofis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="left-align">1. Hammadde Deposu</th>
+              <td class="rel-empty"></td>
+              <td class="rel-A">A / 1</td>
+              <td class="rel-I">I / 1</td>
+              <td class="rel-U">U</td>
+              <td class="rel-U">U</td>
+              <td class="rel-O">O / 2</td>
+              <td class="rel-U">U</td>
+            </tr>
+            <tr>
+              <th class="left-align">2. Hücre 1 (Ağır Pres)</th>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-E">E / 6</td>
+              <td class="rel-I">I / 6</td>
+              <td class="rel-U">U</td>
+              <td class="rel-E">E / 2,3</td>
+              <td class="rel-X">X / 4</td>
+            </tr>
+            <tr>
+              <th class="left-align">3. Hücre 2 (Talaşlı İmalat)</th>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-A">A / 1,6</td>
+              <td class="rel-U">U</td>
+              <td class="rel-I">I / 2</td>
+              <td class="rel-X">X / 4</td>
+            </tr>
+            <tr>
+              <th class="left-align">4. Hücre 3 (Yüzey & Montaj)</th>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-A">A / 1,6</td>
+              <td class="rel-O">O</td>
+              <td class="rel-X">X / 5</td>
+            </tr>
+            <tr>
+              <th class="left-align">5. Mamul Deposu</th>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-U">U</td>
+              <td class="rel-I">I / 2</td>
+            </tr>
+            <tr>
+              <th class="left-align">6. Takımhane & Bakım</th>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-O">O</td>
+            </tr>
+            <tr>
+              <th class="left-align">7. İdari & Sosyal Ofisler</th>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+              <td class="rel-empty"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="sonuc">4. Yerleşim Planı İçin Kritik Çıkarımlar</h2>
+      
+      <div class="callout warn" data-label="DİKKAT EDİLECEK">
+        <p><strong>X (İstenmeyen) İlişkiler:</strong> İdari ofisler ile Hücre 1 (Pres) ve Hücre 2 (Talaşlı) arasında şiddetli gürültü/titreşim sebebiyle <strong>X ilişkisi</strong> atanmıştır. Aynı şekilde Hücre 3'teki bakalit ve polisaj tozundan ofislerin korunması için yine X ilişkisi konmuştur. Yerleşim krokisi çizilirken ofisler üretimden tamamen izole bir cepheye (tercihen deponun yanına) yerleştirilmelidir.</p>
+      </div>
+
+      <div class="callout good" data-label="AKIŞ STRATEJİSİ">
+        <p><strong>A (Mutlak) İlişkiler:</strong> Tesisin ana omurgası <code>Hammadde → Hücre 1 → Hücre 2 → Hücre 3 → Mamul</code> şeklinde "U-Tipi" veya "Düz Hat (I-Tipi)" bir akış oluşturacak şekilde yan yana dizilmek zorundadır.</p>
+      </div>
+
+      <div class="step-pagination">
+        <a href="adim10.html"><span class="dir">← ÖNCEKİ ADIM 10</span><span class="title">Alan İhtiyaçları</span></a>
+        <a href="adim12.html" class="next"><span class="dir">SONRAKİ ADIM 12 & 13 →</span><span class="title">Blok Yerleşim Planı</span></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="main-footer">
+  <div class="brand">IE 371 · Düdüklü Tencere Üretim Tesisi Projesi</div>
+  <div class="meta">ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ · ENDÜSTRİ MÜHENDİSLİĞİ · 2026</div>
+  <div class="links">
+    <a href="index.html">Ana</a><a href="adimlar.html">18 Adım</a><a href="algoritma.html">Algoritma</a><a href="dosyalar.html">Dosyalar</a>
+  </div>
+</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>

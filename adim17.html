@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adım 16 & 17 — Sistem Simülasyonu — IE 371 Projesi</title>
+<meta name="description" content="IE 371 — M/M/c Kuyruk Teorisi ve Monte Carlo Simülasyonu ile tesis performansının doğrulanması ve Korkmaz/Hisar fabrika karşılaştırması.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="main-nav">
+  <a href="index.html" class="nav-logo">IE 371 · DÜDÜKLÜ TENCERE</a>
+  <div class="nav-links">
+    <a href="index.html">Ana</a>
+    <a href="urun.html">Ürün</a>
+    <a href="adimlar.html" class="active">18 Adım</a>
+    <a href="algoritma.html">Algoritma</a>
+    <a href="karsilastirma.html">Karşılaştırma</a>
+    <a href="sonuclar.html">Sonuçlar</a>
+    <a href="sss.html">SSS</a>
+    <a href="dosyalar.html">Dosyalar</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Ana</a><span>/</span><a href="adimlar.html">18 Adım</a><span>/</span>Adım 16 & 17</div>
+    <div class="page-step-tag">ADIM 16 & 17</div>
+    <h1 class="page-title">Simülasyon ve <em>Tesis Karşılaştırması.</em></h1>
+    <p class="page-subtitle">Kurulan üretimin M/M/c kuyruk modeli ve 100 replikasyonlu Monte Carlo ile stres testine sokulması ve Türkiye'deki mevcut fabrikalarla (Korkmaz, Hisar) yapısal farklarının incelenmesi.</p>
+  </div>
+</header>
+
+<main>
+  <div class="content-grid">
+    <aside class="sidebar">
+      <div class="sidebar-title">Sayfada</div>
+      <nav>
+        <a href="#kuyruk">M/M/c Kuyruk Modeli</a>
+        <a href="#monte-carlo">Monte Carlo Simülasyonu</a>
+        <a href="#kapasite">Kapasite Projeksiyonu</a>
+        <a href="#karsilastirma">Korkmaz / Hisar Farkı</a>
+      </nav>
+    </aside>
+
+    <div class="prose">
+      <h2 id="kuyruk">1. M/M/c Kuyruk Modeli (Matematiksel Çözüm)</h2>
+      <p class="lead">Tesisin darboğazlarını analitik olarak doğrulamak için her iş istasyonu bağımsız bir M/M/c kuyruk sistemi (Erlang C formülü) ile Python'da modellenmiştir.</p>
+      
+      <ul>
+        <li><strong>Geliş hızı ($\lambda$):</strong> 1/63 sn = 57.1 parça/saat</li>
+        <li><strong>Doluluk ($\rho$):</strong> $\lambda / (c \times \mu)$</li>
+      </ul>
+
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>İstasyon / Makine</th><th>c (Makine)</th><th>Çevrim (sn)</th><th>Doluluk ($\rho$)</th><th>Durum</th></tr></thead>
+          <tbody>
+            <tr><td>İst 1 - Gövde Kolu (Montaj)</td><td class="num">1</td><td class="num">25</td><td class="num good">%39.7</td><td>Atıl / Esnek</td></tr>
+            <tr><td>İst 2 - Kapak Kolu (Montaj)</td><td class="num">1</td><td class="num">33</td><td class="num warn">%52.4</td><td>Normal</td></tr>
+            <tr><td>İst 3 - Test + Ambalaj</td><td class="num">1</td><td class="num">34</td><td class="num warn">%54.0</td><td>Sistem Darboğazı</td></tr>
+            <tr><td>Derin Çekme Presi</td><td class="num">1</td><td class="num">12</td><td class="num good">%19.0</td><td>Atıl</td></tr>
+            <tr><td>Bakalit Enjeksiyon Hattı</td><td class="num">4</td><td class="num">60</td><td class="num good">%23.8</td><td>Rahat / Yedekli</td></tr>
+            <tr><td>Polisaj Hattı (Robotik)</td><td class="num">2</td><td class="num">60</td><td class="num warn">%47.6</td><td>Normal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout cool" data-label="MÜHENDİSLİK YORUMU">
+        <p>Hiçbir istasyon kararsız ( $\rho \ge 1$ ) değildir. En yüksek doluluk %54 ile Son Montaj'ın 3. istasyonundadır. Bu, hat dengelemenin doğru yapıldığını ve sistem darboğazının <strong>bilinçli olarak son kontrole</strong> yerleştirildiğini gösterir.</p>
+      </div>
+
+      <h2 id="monte-carlo">2. Ayrık Olay (Discrete-Event) Monte Carlo Simülasyonu</h2>
+      <p>Kuyruk modelinin varsaydığı "üstel dağılım" kötümser sonuçlar ürettiğinden, gerçekçi sistem analizi için <strong>Log-normal servis süreleri ($\sigma = \%15$)</strong> kullanılarak ARENA mantığında 100 replikasyonlu bir simülasyon Python'da koşulmuştur.</p>
+
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Simülasyon Metriği</th><th>Ortalama</th><th>Std. Sapma</th><th>%95 Güven Aralığı (CI)</th></tr></thead>
+          <tbody>
+            <tr><td>Günlük Talep (Varış)</td><td class="num">400.4 adet</td><td class="num">19.53</td><td class="num">396.6 — 404.2</td></tr>
+            <tr><td>Günlük Tamamlanan</td><td class="num">397.7 adet</td><td class="num">19.34</td><td class="num">393.9 — 401.5</td></tr>
+            <tr><td><strong>Ortalama Lead Time</strong></td><td class="num warn">115.84 sn</td><td class="num">5.16</td><td class="num">114.8 — 116.9</td></tr>
+            <tr><td>İstasyon 2 Bekleme Süresi</td><td class="num">10.60 sn</td><td class="num">2.49</td><td class="num">10.1 — 11.1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="kapasite">3. Yıllık Kapasite Projeksiyonu</h2>
+      
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="label">Simüle Edilen Üretim</div>
+          <div class="value">99.422<span class="unit">adet/yıl</span></div>
+          <div class="desc">1 vardiya, 250 işgünü üzerinden.</div>
+        </div>
+        <div class="metric-card">
+          <div class="label">Yıllık Talep Hedefi</div>
+          <div class="value">100.000<span class="unit">adet/yıl</span></div>
+          <div class="desc">Adım 1'de belirlenen ana hedef.</div>
+        </div>
+        <div class="metric-card">
+          <div class="label">Kapasite Açığı</div>
+          <div class="value warn">%0.6<span class="unit">Eksik</span></div>
+          <div class="desc">Hedefe ulaşmak için yılda 48 saat mesai yeterlidir.</div>
+        </div>
+      </div>
+
+      <h2 id="karsilastirma">4. Gerçek Tesislerle Karşılaştırma (Korkmaz ve Hisar)</h2>
+      <p class="lead">Akademik tasarımımızı, Türkiye mutfak eşyaları sektörünün iki devi olan Korkmaz (Düzce) ve Hisar (Tuzla) fabrikalarındaki üretim mimarisiyle karşılaştırdık.</p>
+
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Faktör</th><th>Projemizdeki Tesis Tasarımı</th><th>Mevcut Fabrikalar (Korkmaz / Hisar)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Yerleşim Tipi</strong></td><td><strong>Hücresel (Cellular):</strong> Ürün bazlı 4 özel hücre. U-tipi akış.</td><td><strong>Proses (Job-Shop):</strong> Tüm presler bir yerde, tüm polisajlar başka bir yerde toplanmıştır.</td></tr>
+            <tr><td><strong>Ürün Çeşitliliği</strong></td><td>Sadece 2 model düdüklü tencere (100k adet) odaklıdır (Odaklanmış Tesis).</td><td>Çaydanlık, tava, bardak gibi 50+ ürün ailesi aynı makineleri ortak kullanır.</td></tr>
+            <tr><td><strong>Polisaj Alanı</strong></td><td>Ana üretim hattı (Hücre 3) içindedir. Süreç senkronizedir.</td><td>İnce toz ve kontaminasyon sebebiyle tesisin en uzak köşesinde tamamen izole edilmiştir.</td></tr>
+            <tr><td><strong>İşgücü (Otomasyon)</strong></td><td>Tek vardiyada <strong>25 operatör</strong> (Robotik polisaj, CNC ve otomatik hatlar).</td><td>Benzer hacimde <strong>35-45 operatör</strong> kullanır. Eski manuel polisaj makineleri hakimdir.</td></tr>
+            <tr><td><strong>Depo Politikası</strong></td><td>3 aylık (35 ton) çelik hammadde stoku. Güvenli ama alan israfı.</td><td>Borçelik/ArcelorMittal'den Just-in-Time (2-4 hafta stok). %40 alan tasarrufu sağlarlar.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout good" data-label="SEKTÖREL ÇIKARIM">
+        <p>Projemiz sıfırdan kurulan (greenfield) ve tek ürüne odaklanan bir tesistir. Korkmaz ve Hisar ise yıllar içinde büyüyen, çok ürünlü fabrikalardır. Ancak Korkmaz'ın son modernizasyon yatırımlarında <strong>U-tipi hücrelere</strong> geçmesi, bizim teorik tasarımımızın endüstriyel gerçeklikle ne kadar örtüştüğünün kanıtıdır.</p>
+      </div>
+
+      <div class="step-pagination">
+        <a href="adim14.html"><span class="dir">← ÖNCEKİ ADIM 14 & 15</span><span class="title">CRAFT & Taşıma</span></a>
+        <a href="adim18.html" class="next"><span class="dir">SONRAKİ ADIM 18 →</span><span class="title">Bonus: Algoritmalar</span></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="main-footer">
+  <div class="brand">IE 371 · Düdüklü Tencere Üretim Tesisi Projesi</div>
+  <div class="meta">ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ · ENDÜSTRİ MÜHENDİSLİĞİ · 2026</div>
+  <div class="links">
+    <a href="index.html">Ana</a><a href="adimlar.html">18 Adım</a><a href="algoritma.html">Algoritma</a><a href="dosyalar.html">Dosyalar</a>
+  </div>
+</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>

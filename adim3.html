@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adım 3 — BOM — IE 371 Projesi</title>
+<meta name="description" content="IE 371 — BOM ve ürün ağacı: 24 satır, 4 alt montaj seviyesi">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="main-nav">
+  <a href="index.html" class="nav-logo">IE 371 · DÜDÜKLÜ TENCERE</a>
+  <div class="nav-links">
+    <a href="index.html">Ana</a>
+    <a href="urun.html">Ürün</a>
+    <a href="adimlar.html" class="active">18 Adım</a>
+    <a href="algoritma.html">Algoritma</a>
+    <a href="karsilastirma.html">Karşılaştırma</a>
+    <a href="sonuclar.html">Sonuçlar</a>
+    <a href="sss.html">SSS</a>
+    <a href="dosyalar.html">Dosyalar</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Ana</a><span>/</span><a href="adimlar.html">18 Adım</a><span>/</span>Adım 3</div>
+    <div class="page-step-tag">ADIM 03</div>
+    <h1 class="page-title">BOM ve <em>ürün ağacı.</em></h1>
+    <p class="page-subtitle">Düdüklü tencerenin 4 alt montaj seviyesinde dökümü: gövde grubu, kapak grubu, sandviç taban ve basınç regülatörü. Her bileşenin malzeme, ağırlık ve birim sayısı.</p>
+  </div>
+</header><main><div class="content-grid"><aside class="sidebar"><div class="sidebar-title">Sayfada</div><nav><a href="#agac">Ürün Ağacı</a><a href="#bom">BOM Tablosu</a><a href="#agirlik">Ağırlık Analizi</a><a href="#hammadde">Yıllık Hammadde</a></nav></aside><div class="prose">
+
+<h2 id="agac">1. Ürün Ağacı — 4 Seviye</h2>
+<p class="lead">Düdüklü tencere 4 ana alt montajdan oluşur. Her alt montajın kendi içinde 3-7 bileşeni vardır. Toplam <strong>24 BOM satırı</strong> bulunur.</p>
+
+<div class="callout cool" data-label="HİYERARŞİ">
+<pre style="font-family:'JetBrains Mono', monospace; font-size:0.85rem; line-height:1.8; color:var(--text);">
+DÜDÜKLÜ TENCERE (Model A 5L / Model B 7L)
+├── A1: GÖVDE GRUBU
+│   ├── Ana Gövde (304 sac, 720/920 g)
+│   ├── 2× Kulp Kulağı (304 sac, 18 g)
+│   ├── 2× Bakalit Yan Kulp (220/260 g)
+│   └── 6× Perçin Al (1 g)
+│
+├── A2: KAPAK GRUBU
+│   ├── Kapak (304 sac, 380/470 g)
+│   ├── Bakalit Üst Kulp (180/210 g)
+│   ├── O-Ring Conta (silikon, 12/14 g)
+│   ├── Kilit Mekanizması Yayı (1.5 g)
+│   ├── Basınç Göstergesi (35 g)
+│   └── 4× M4 Paslanmaz Vida (1 g)
+│
+├── A3: SANDVİÇ TABAN
+│   ├── Al Disk 1050 (Ø180/200, 4 mm, 75/92 g)
+│   ├── 430 Sac Disk (Ø185/205, 1 mm, 22/27 g)
+│   └── Impact Bonding (mekanik birleşim)
+│
+└── A4: BASINÇ REGÜLATÖRÜ
+    ├── Regülatör Gövdesi (304 CNC, 22 g)
+    ├── Buhar Tahliye Borusu (7 g)
+    ├── Gösterge Pimi (CNC, 7 g)
+    ├── Sigorta Valfi (12 g)
+    ├── Alev Kalkanı (304 sac, 18/22 g)
+    ├── Süzgeç (304 sac, 14/16 g)
+    └── Valf Yayları 4× (1 g her biri)
+</pre>
+</div>
+
+<h2 id="bom">2. Detaylı BOM Tablosu (24 satır)</h2>
+
+<div class="table-wrap">
+<table class="data">
+<thead><tr><th>#</th><th>Bileşen</th><th>Malzeme</th><th>Model A (g)</th><th>Model B (g)</th><th>Adet/Tencere</th><th>Karar</th></tr></thead>
+<tbody>
+<tr class="section"><td colspan="7">A1 — GÖVDE GRUBU</td></tr>
+<tr><td class="num">1</td><td>Ana Gövde</td><td>AISI 304 sac, 1.5 mm</td><td class="num">720</td><td class="num">920</td><td class="num">1</td><td class="good">MAKE</td></tr>
+<tr><td class="num">7</td><td>Kulp Kulağı</td><td>AISI 304 sac, 1.5 mm</td><td class="num">18</td><td class="num">22</td><td class="num">2</td><td class="good">MAKE</td></tr>
+<tr><td class="num">10a</td><td>Bakalit Yan Kulp</td><td>Bakalit (BMC reçine)</td><td class="num">220</td><td class="num">260</td><td class="num">2</td><td class="good">MAKE</td></tr>
+<tr><td class="num">18</td><td>Al Perçin</td><td>Al 5052 H32</td><td class="num">1</td><td class="num">1</td><td class="num">6</td><td class="warn">BUY</td></tr>
+
+<tr class="section"><td colspan="7">A2 — KAPAK GRUBU</td></tr>
+<tr><td class="num">2</td><td>Kapak</td><td>AISI 304 sac, 2.0 mm</td><td class="num">380</td><td class="num">470</td><td class="num">1</td><td class="good">MAKE</td></tr>
+<tr><td class="num">10b</td><td>Bakalit Üst Kulp</td><td>Bakalit (BMC reçine)</td><td class="num">180</td><td class="num">210</td><td class="num">1</td><td class="good">MAKE</td></tr>
+<tr><td class="num">13</td><td>O-Ring Conta</td><td>Silikon FDA</td><td class="num">12</td><td class="num">14</td><td class="num">1</td><td class="warn">BUY</td></tr>
+<tr><td class="num">16a</td><td>Kilit Yayı</td><td>304 yay teli</td><td class="num">1.5</td><td class="num">1.5</td><td class="num">1</td><td class="good">MAKE</td></tr>
+<tr><td class="num">15</td><td>Basınç Göstergesi</td><td>Pirinç + cam</td><td class="num">35</td><td class="num">35</td><td class="num">1</td><td class="warn">BUY</td></tr>
+<tr><td class="num">17</td><td>M4 Paslanmaz Vida</td><td>304 cıvata</td><td class="num">1</td><td class="num">1</td><td class="num">4</td><td class="warn">BUY</td></tr>
+
+<tr class="section"><td colspan="7">A3 — SANDVİÇ TABAN</td></tr>
+<tr><td class="num">3</td><td>Al Disk (üst)</td><td>Al 1050 H14, 4 mm</td><td class="num">75</td><td class="num">92</td><td class="num">1</td><td class="good">MAKE</td></tr>
+<tr><td class="num">4</td><td>430 Sac (alt)</td><td>AISI 430 ferritik, 1 mm</td><td class="num">22</td><td class="num">27</td><td class="num">1</td><td class="good">MAKE</td></tr>
+
+<tr class="section"><td colspan="7">A4 — BASINÇ REGÜLATÖRÜ</td></tr>
+<tr><td class="num">11</td><td>Regülatör Gövdesi</td><td>304 CNC</td><td class="num">22</td><td class="num">22</td><td class="num">1</td><td class="good">MAKE</td></tr>
+<tr><td class="num">5</td><td>Buhar Tahliye Borusu</td><td>304 boru</td><td class="num">7</td><td class="num">7</td><td class="num">1</td><td class="good">MAKE</td></tr>
+<tr><td class="num">6</td><td>Gösterge Pimi</td><td>304 CNC</td><td class="num">7</td><td class="num">7</td><td class="num">1</td><td class="good">MAKE</td></tr>
+<tr><td class="num">14</td><td>Sigorta Valfi</td><td>Pirinç + yay</td><td class="num">12</td><td class="num">12</td><td class="num">1</td><td class="warn">BUY</td></tr>
+<tr><td class="num">8</td><td>Alev Kalkanı</td><td>304 sac, 0.8 mm</td><td class="num">18</td><td class="num">22</td><td class="num">1</td><td class="good">MAKE</td></tr>
+<tr><td class="num">9</td><td>Süzgeç</td><td>304 sac, 0.8 mm delikli</td><td class="num">14</td><td class="num">16</td><td class="num">1</td><td class="good">MAKE</td></tr>
+<tr><td class="num">16b</td><td>Valf Yayları</td><td>304 yay teli</td><td class="num">1</td><td class="num">1</td><td class="num">4</td><td class="good">MAKE</td></tr>
+
+<tr class="section"><td colspan="7">AMBALAJ (BUY)</td></tr>
+<tr><td class="num">20</td><td>Karton Kutu</td><td>Oluklu mukavva</td><td class="num">280</td><td class="num">320</td><td class="num">1</td><td class="warn">BUY</td></tr>
+<tr><td class="num">21</td><td>Kullanım Kılavuzu</td><td>Basılı broşür</td><td class="num">20</td><td class="num">25</td><td class="num">1</td><td class="warn">BUY</td></tr>
+<tr><td class="num">19</td><td>Bakalit Hammadde</td><td>BMC reçine</td><td>—</td><td>—</td><td>—</td><td class="warn">BUY</td></tr>
+
+<tr class="total"><td colspan="3"><strong>BRÜT AĞIRLIK (Ambalaj hariç)</strong></td><td class="num"><strong>2.093 g</strong></td><td class="num"><strong>2.585 g</strong></td><td colspan="2"></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="agirlik">3. Ağırlık Analizi</h2>
+
+<div class="row cols-2">
+<div>
+<h4>Model A (5L) — Ağırlık Dağılımı</h4>
+<ul>
+<li><strong>Paslanmaz çelik 304:</strong> 1.178 g (%56)</li>
+<li><strong>Bakalit kulplar:</strong> 620 g (%30)</li>
+<li><strong>Sandviç taban:</strong> 97 g (%4.6)</li>
+<li><strong>Diğer:</strong> 198 g (%9.4)</li>
+</ul>
+<p><strong>Toplam: 2.093 g</strong></p>
+</div>
+
+<div>
+<h4>Model B (7L) — Ağırlık Dağılımı</h4>
+<ul>
+<li><strong>Paslanmaz çelik 304:</strong> 1.482 g (%57)</li>
+<li><strong>Bakalit kulplar:</strong> 730 g (%28)</li>
+<li><strong>Sandviç taban:</strong> 119 g (%4.6)</li>
+<li><strong>Diğer:</strong> 254 g (%10)</li>
+</ul>
+<p><strong>Toplam: 2.585 g</strong></p>
+</div>
+</div>
+
+<h2 id="hammadde">4. Yıllık Hammadde Tüketimi</h2>
+
+<p>BOM bilgisini yıllık talep ile çarptığımızda tedarikçi sözleşmesi için kritik rakamlar ortaya çıkar:</p>
+
+<div class="table-wrap">
+<table class="data">
+<thead><tr><th>Malzeme</th><th>Model A (60k adet)</th><th>Model B (40k adet)</th><th>Toplam Yıllık</th><th>Tedarikçi</th></tr></thead>
+<tbody>
+<tr><td><strong>AISI 304 Paslanmaz Sac</strong></td><td class="num">70.680 kg</td><td class="num">59.280 kg</td><td class="num good">129.960 kg ≈ 130 ton</td><td>Outokumpu, Acerinox</td></tr>
+<tr><td><strong>Al 1050 (sandviç üst)</strong></td><td class="num">4.500 kg</td><td class="num">3.680 kg</td><td class="num">8.180 kg ≈ 8.2 ton</td><td>Assan Alüminyum</td></tr>
+<tr><td><strong>AISI 430 (sandviç alt)</strong></td><td class="num">1.320 kg</td><td class="num">1.080 kg</td><td class="num">2.400 kg ≈ 2.4 ton</td><td>Outokumpu</td></tr>
+<tr><td><strong>Bakalit (BMC reçine)</strong></td><td class="num">37.200 kg</td><td class="num">29.200 kg</td><td class="num">66.400 kg ≈ 66 ton</td><td>Bakelite GmbH</td></tr>
+<tr><td><strong>Silikon (O-ring)</strong></td><td class="num">720 kg</td><td class="num">560 kg</td><td class="num">1.280 kg</td><td>Trelleborg</td></tr>
+<tr class="total"><td><strong>METAL TOPLAM</strong></td><td colspan="2"></td><td class="num"><strong>140.540 kg ≈ 141 ton</strong></td><td><strong>3 ay stok: 35 ton</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout" data-label="ÖNEMLİ">
+<p>Yıllık <strong>130 ton paslanmaz sac</strong>, <strong>66 ton bakalit</strong>, <strong>8 ton alüminyum</strong> tüketimi tedarikçi sözleşmelerinde miktar indirimi sağlar. Outokumpu ile ton bazında %12 iskonto pazarlığı yapılabilir.</p>
+</div>
+
+<div class="step-pagination"><a href="adim2.html"><span class="dir">← ÖNCEKİ ADIM 2</span><span class="title">Make-or-Buy</span></a><a href="adim4.html" class="next"><span class="dir">SONRAKİ ADIM 4 →</span><span class="title">Operasyon Süreç Şemaları</span></a></div></div></div></main>
+
+<footer class="main-footer">
+  <div class="brand">IE 371 · Düdüklü Tencere Üretim Tesisi Projesi</div>
+  <div class="meta">ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ · ENDÜSTRİ MÜHENDİSLİĞİ · 2026</div>
+  <div class="links">
+    <a href="index.html">Ana</a><a href="adimlar.html">18 Adım</a><a href="algoritma.html">Algoritma</a><a href="dosyalar.html">Dosyalar</a>
+  </div>
+  <div class="meta" style="margin-top:1.5rem;color:var(--accent)">14 RAPOR · 3 EXCEL · 8 PYTHON ALGORİTMA · 860 FORMÜL</div>
+</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>
